@@ -5,10 +5,10 @@
 ################################################################################
 
 
-# This script will give a detailed walktrough of how to use the Tuber package (https://cran.r-project.org/web/packages/tuber/tuber.pdf)
-# to extract youtube comments, format them, and give some basic examples for analysis of text and contained emojis. It was tested on Mac,
-# Linux and Windows and should work on all systems. However, display of text containing Emojis in the Console is only supported on Mac
-# and Linux. In Windows, you will see the byte-code sequences for the respective Emojis in the console and in the View() tab instead.
+# This script gives a detailed walktrough of how to use the tuber package (https://cran.r-project.org/web/packages/tuber/tuber.pdf)
+# to extract YouTube comments, format them, and give some basic examples for analysis of text and contained emojis. It was tested on Mac,
+# Linux and Windows and should work on all systems. However, display of text containing Emojis in the console is only supported on Mac
+# and Linux. In Windows, you will see the byte-code sequences for the respective Emojis in the console and in the View() tab in RStudio instead.
 
 # The script is part of an ongoing research project:
 # https://www.researchgate.net/project/Methods-and-Tools-for-Automatic-Sampling-and-Analysis-of-YouTube-Comments
@@ -16,25 +16,9 @@
 
 # Kohne, J., Breuer, J., & Mohseni, M. R. (2019). Methods and Tools for Automatic Sampling and Analysis of YouTube User Comments:https://doi.org/10.17605/OSF.IO/HQSXE
 
-# This Notebook will walk you trough 3 Steps that are necessary to extract youtube comments:
-
-# 1) Setting up your local environment in R-studio
-# 2) Creating a google account and authenticating it to use the Youtube API
-# 3) Formatting raw comments to make them usable
-
-
-
-
-
 
 
 #### Setting up local environment ####
-
-
-#### Clean Slate
-
-# If you want start with a completely blank slate: Open R-studio, open a new script file, then run:
-rm(list=ls()) # clear global environment (deletes everything in your global environment)
 
 #### Working Directory
 
@@ -43,14 +27,14 @@ getwd() # display current working directory
 setwd(choose.dir()) # assign working directory path via a graphical user interface (GUI) -> should be the directory where this script is stored
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path)) # alternatively: directly set working directory to directory that contains this script (RSTUDIO only)
 
-#### Setting Options
+#### Setting options
 
-# Because we are working with textual data, we need to prevent R from recognizing text strings as factors
+# Because we are working with textual data, we need to prevent R from recognizing all text strings as factors
 options(stringsAsFactors = FALSE) # set automatic conversion of strings to factors to false
 
-#### Installing & Loading CRAN Packages
+#### Installing & loading CRAN packages
 
-# to extract and format the comment data, we will need 10 CRAN packages that are not contained in base R
+# to extract, format, and explore the YouTube comment data, we need the following packages
 packages <- c("devtools", "tm", "quanteda", "tuber","qdapRegex","rlang","purrr","ggplot2", "syuzhet", "lexicon") # create list of required packages
 for (package in packages) { # check if those packages are already installed
   if (!require(package, character.only=T)) { # if not, install & load them
@@ -61,33 +45,31 @@ for (package in packages) { # check if those packages are already installed
 }
 rm(packages, package) # remove the list-variable with the package names from the global environment
 
-#### Installing & Loading Github Packages
+#### Installing & loading GitHub packages
 
-# Two packages that we need to work with Emojis are not on CRAN yet so we install them from Github
-install_github("hadley/emo") # install from GitHub
-library(emo) # load the emo package
+# Two packages that we need to work with Emojis are not on CRAN yet, so we install them from GitHub
+install_github("hadley/emo") 
+library(emo)
 
-# Installing the emoGG package from github (not on CRAN yet): Displays Emoji in ggplot objects
-devtools::install_github("dill/emoGG") # install from GitHub
-library(emoGG) # load the emo package
-
+install_github("dill/emoGG") 
+library(emoGG)
 
 
 #### Creating Google Account and authenticating for Youtube API #####
 
 # To get access to data from Youtube, we have to use the Youtube API (https://developers.google.com/youtube/v3/).
-# To do this, we need a token that identifies us when using the API so Youtube can be sure
-# that their Terms and Conditions are respected (e.g. there is a certain limit how much data you can access in
-# a given timeframe). We´ll go about this step by step:
+# To do this, we need a token that identifies us when using the API, so Youtube can be sure
+# that their Terms and Conditions are respected (e.g., there is a certain limit how much data you can access in
+# a given timeframe). We´ll go through this step by step below:
 
-# 1) If you do not have a google account that you are willing to use for this project,
+# 1) If you do not have a Google account (or do not want to use your personal account for this project),
 #    you have to create a new one here https://accounts.google.com/signup/v2/webcreateaccount?hl=en-GB&flowName=GlifWebSignIn&flowEntry=SignUp
 
-# 2) With your google account, you have to create a "Google Project" and configure it correctly so you can get the right credentials to get access to the data
-#    with the tuber package. In case that you need help, we have set up a video showcasing and describing the process. You can find it here:
+# 2) With your Google account, you have to create a "Google Project" and configure it correctly, so you have the right credentials to get access to the data
+#    with the tuber package. In case you need help, we have created a short video showing the process. You can find it here:
 #    https://www.youtube.com/watch?v=qLrNq0jWH84
 
-# 3) Use the credentials of the project-account to authenticate your R-session. By doing this, you allow R access to all data on youtube,that you would be able
+# 3) Use the credentials of the account associated with the project to authenticate your R-session. By doing this, you allow R access to all data on YouTube,that you would be able
 #    to see if you went to the site logged in with this account. Be carefull to **NOT** share these credentials with anyone else you don´t want to be able to log
 #    into this account.
 
@@ -95,11 +77,11 @@ library(emoGG) # load the emo package
 
 #### Authentification in R ####
 
-appID <- "14873626869-ei48qss6ei7knt02hsmv1qm6ngl8igfb.apps.googleusercontent.com" # Insert your own app Id here 
-appSecret <- "sGGijdnmbwHjGXs4HszVB4Tx" # insert your own app Secret here 
+appID <- "12345abcde.apps.googleusercontent.com" # Insert your own app Id here 
+appSecret <- "4pp53Cr3T" # insert your own app Secret here 
 
 
-# Upon running this line, there will be a prompt in the console asking you to save the access token in a file
+# When running this line, there will be a prompt in the console asking you to save the access token in a file
 # select "No" by entering 2 in the console and hitting enter.
 # Afterwards, a browser window should open, prompting you to log in with your Google account
 # After logging in, you can close the browser and return to R
@@ -107,18 +89,18 @@ yt_oauth(app_id = appID,app_secret = appSecret)
 
 
 
-#### Extracting Comments ####
+#### Extracting comments ####
 
 # First, we need the video ID(s) of the YouTube video(s) whose comments we want to scrape & analyze
 # We can find the video ID by navigating to the video in our browser, and simply
 # copying the last part of the URL that comes after "?v="
-# For example, if we want to analyze the comments of the video with the URL https://www.youtube.com/watch?v=DcJFdCmN98s
-# our video ID is "DcJFdCmN98s"
-# We can use functions from the tuber package to extract all comments
+# For the example in this script, we use the video with the URL https://www.youtube.com/watch?v=DcJFdCmN98s
+# Hence, the video ID we need is "DcJFdCmN98s"
 
+# We can use functions from the tuber package to extract a sample of or all comments
 Comments_sample <- get_comment_threads(c(video_id="DcJFdCmN98s"), max_results = 100) # set max_results value between 20 and 100 to get the x latest comments
-# Disclaimer: If you set it below 20 none will be fetched, above 100 all comments will be fetched.
-# Disclaimer: get_comment_threads does not collect replies to comments
+# NB1: If you set it below 20 none will be fetched, above 100 all comments will be fetched.
+# NB2: get_comment_threads does not collect replies to comments
 
 Comments <- get_all_comments(c(video_id="DcJFdCmN98s")) # to extract all comments (this might take a while if there are many comments)
 
@@ -132,31 +114,31 @@ Comments <- get_all_comments(c(video_id="DcJFdCmN98s")) # to extract all comment
 Comments <- subset(Comments, is.na(parentId))
 
 
-#### Formatting the Data ####
+#### Formatting the data ####
 
-# The extracted data is still in a rather raw format, to create a more detailed dataframe, we need to parse the data and extract relevant information.
-# We included a function for parsing comments in the Github repository. You have to download this file (yt_parse.Rdata), save it in the working directory
+# The extracted data is still in a rather raw format.
+# To create a more detailed dataframe, we need to parse the data and extract relevant information.
+# We included a script containing the function for parsing comments in the GitHub repository. 
+# Make sure that you have this script (yt_parse.Rdata) in the working directory.
 # for your Session with this script and then can load the function with the following command:
 
 load("yt_parse.Rdata")
 
-# Disclaimer: This function was not written to be computationally efficient. Parsing large amounts of comments (+50.000) may take a while.
-#             Nevertheless it might be usefull for your own research if your dataset of interest is reasonably small (Parsing 50.000 comments takes ~ 5 Minutes)
+# NB: This function was not written to be computationally efficient. Parsing large amounts of comments (+50.000) may take a while.
+#     Nevertheless it might be useful for your own research if your dataset of interest is reasonably small (for reference: parsing ~ 50.000 comments took ~ 5 minutes on our laptops)
 
-# This function will create dataframe with one row per comment or comment reply and 11 columns:
-#       1) Youtube Username of the author
+# This function will create a dataframe with one row per comment or comment reply and 11 columns:
+#       1) YouTube username of the author
 #       2) Original, raw comment text
-#       3) Text where Hexcodes for Emojis are replaced with textual descriptions of Emojis (e.g. EMOJI_grinningface)
-#       4) Text where Emojis have been deleted
-#       5) A list of only the Emojis that have been used in the Comments  (e.g. EMOJI_grinningface)
-#       6) Amount of Likes that the comment has
+#       3) Text where hex codes for Emojis are replaced with textual descriptions of emojis (e.g. EMOJI_grinningface)
+#       4) Text where emojis have been deleted
+#       5) A column includingonly the emojis that have been used in the Ccmments (e.g. EMOJI_grinningface)
+#       6) Amount of likes that the comment has received
 #       7) List of URLs that are contained in the comment
 #       8) Timestamp when comment was published 
 #       9) Timestamp when comment was last edited
-#       10) Youtube Moderation Status Flags (e.g. "likely spam")
-#       11) Unique Comment ID
-
-
+#       10) YouTube Moderation Status Flags (e.g. "likely spam")
+#       11) Unique comment ID
 
 # Now we can use the custom function defined above to format the "Comments" dataframe
 FormattedComments <- yt_parse(Comments) # will take a while if the number of comments is high (> 1000)
@@ -169,10 +151,10 @@ CommentsCounter <- rep(1,dim(FormattedComments)[1])
 CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8]))
 colnames(CounterFrame) <- c("CommentCounter","DateTime")
 
-# binning by week
+# Binning by week
 CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week"))
 
-# plotting
+# Plotting
 ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) +
   stat_summary(fun.y=sum,geom="bar") +
   scale_x_date() +
@@ -181,7 +163,7 @@ ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) +
 
 #### Basic Frequency Analysis for Text ####
 
-# In this section, we give a breif outline of text analysis for Youtube Comments.
+# In this section, we give a brief outline of text analysis for Youtube Comments.
 # This exemplary part is largely based on this tutorial: https://docs.quanteda.io/articles/pkgdown/examples/plotting.html
 
 # We use the dataframe column without the Emojis for the pure textual analysis here
