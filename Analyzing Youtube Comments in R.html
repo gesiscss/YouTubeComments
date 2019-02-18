@@ -13123,8 +13123,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook, we will interactively walk trough the analysis of Youtube comments. For instructions on how to
-download and parse the data, please refer to the R script in this repository. The scripts are part of an ongoing research project:</p>
+<p>In this notebook, we will interactively walk trough the analysis of Youtube comments.This means that you can run the codechunks that you see in the browser and will get the same output as you would get offline. To run a codechunk, simply click on it and hit the "Run" button from the menu above. For your convenience, we already ran the chunks that generate plots and important output and put them on display here. You can thus simply scroll trough the script without running anything if you just want to have a look at the results. If you would like to go trough the analyses step by step, you can delete all output first by clicking on Cell -&gt; All Output -&gt; Clear in the drop-down menu above.</p>
+<p>For instructions on how to download and parse the data that we will be using here, please refer to the R script file in this repository. The script and notebook are part of an ongoing research project:</p>
 <p><a href="https://www.researchgate.net/project/Methods-and-Tools-for-Automatic-Sampling-and-Analysis-of-YouTube-Comments">https://www.researchgate.net/project/Methods-and-Tools-for-Automatic-Sampling-and-Analysis-of-YouTube-Comments</a></p>
 <p>and will be subject to change. If you use substantive parts of this notebook or the accompanying script as part of your own research, please cite it in the following way:</p>
 <p>Kohne, J., Breuer, J., &amp; Mohseni, M. R. (2019). Methods and Tools for Automatic Sampling and Analysis of YouTube User Comments: <a href="https://doi.org/10.17605/OSF.IO/HQSXE">https://doi.org/10.17605/OSF.IO/HQSXE</a></p>
@@ -13157,7 +13157,7 @@ download and parse the data, please refer to the R script in this repository. Th
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># CRAN packages</span>
@@ -13222,7 +13222,7 @@ variables by R</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">options</span><span class="p">(</span><span class="n">stringAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
@@ -13251,8 +13251,8 @@ variables by R</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook, we will work with a saved version of an already parsed dataframe. Please check the R script
-in this notebook for a walktrough of how to extract data from youtube and parse it. We will be using the comments of this video, extracted in January 2019:</p>
+<p>In this notebook, we will work with a saved version of an already parsed dataframe. Please check the R script file
+in this repository for a walktrough of how to extract data from youtube and parse it. We will be using the comments of this video, extracted in February 2019:</p>
 <p><a href="https://www.youtube.com/watch?v=DcJFdCmN98s">https://www.youtube.com/watch?v=DcJFdCmN98s</a></p>
 
 </div>
@@ -13260,7 +13260,7 @@ in this notebook for a walktrough of how to extract data from youtube and parse 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Loading prepared dataset, the dataframe is named &quot;FormattedComments&quot;</span>
@@ -13305,7 +13305,7 @@ first 10 rows of the dataframe</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[94]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># showing first 10 rows of dataframe</span>
@@ -13330,13 +13330,16 @@ first 10 rows of the dataframe</p>
 <table>
 <thead><tr><th scope=col>Author</th><th scope=col>Text</th><th scope=col>TextEmojiReplaced</th><th scope=col>TextEmojiDeleted</th><th scope=col>Emoji</th><th scope=col>LikeCount</th><th scope=col>URL</th><th scope=col>Published</th><th scope=col>Updated</th><th scope=col>ModerationStatus</th><th scope=col>CommentID</th></tr></thead>
 <tbody>
-	<tr><td><span style=white-space:pre-wrap>schmoyoho                       </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>You can download &amp; stream the track for all your dance party needs 🔥: https://itunes.apple.com/us/album/oh-my-dayum-single/553920419
+	<tr><td><span style=white-space:pre-wrap>schmoyoho                       </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td><td>You can download &amp; stream the track for all your dance party needs 🔥: https://itunes.apple.com/us/album/oh-my-dayum-single/553920419
 (but it's not on Tidal, sorry)
 
-HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet                                    </td><td>You can download &amp; stream the track for all your dance party needs EMOJI_Fire : https://itunes.apple.com/us/album/oh-my-dayum-single/553920419
+HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet          </td><td>You can download &amp; stream the track for all your dance party needs EMOJI_Fire : https://itunes.apple.com/us/album/oh-my-dayum-single/553920419
 (but it's not on Tidal, sorry)
 
-HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet                          </td><td><span style=white-space:pre-wrap>You can download &amp; stream the track for all your dance party needs : https://itunes.apple.com/us/album/oh-my-dayum-single/553920419 (but it's not on Tidal, sorry)  HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet</span></td><td>EMOJI_Fire                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </td><td>1015                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </td><td>https://....                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td><td>2015-04-25 16:42:03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </td><td>2018-07-12 18:48:23                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td><td><span style=white-space:pre-wrap>Ugj0RqORn9Vl5XgCoAEC      </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td></tr>
+HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet</td><td>You can download &amp; stream the track for all your dance party needs : https://itunes.apple.com/us/album/oh-my-dayum-single/553920419
+(but it's not on Tidal, sorry)
+
+HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting this video to 25 million! to celebrate, i shall go run 25 million laps around the track, brb. next up, 25 billion (that's how numbers work, right?) The utmost props to @100908751642774375984 , we'll have to raise a glass to this next time we meet           </td><td>EMOJI_Fire                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  </td><td>1015                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </td><td>https://....                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </td><td>2015-04-25 16:42:03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td><td>2018-07-12 18:48:23                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td><td><span style=white-space:pre-wrap>Ugj0RqORn9Vl5XgCoAEC      </span>                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td></tr>
 	<tr><td>stereojpg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       </td><td>2019?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </td><td>2019?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </td><td>2019?                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>   0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </td><td>          NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td><td>2019-02-14 14:52:08                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>2019-02-14 14:52:08                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>UgxvhKSjcnw3bsfylHd4AaABAg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </td></tr>
 	<tr><td>Slug                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </td><td>Skimalarinkadinkadinkadink skimalarinkadoo I love you!                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td><td>Skimalarinkadinkadinkadink skimalarinkadoo I love you!                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td><td>Skimalarinkadinkadinkadink skimalarinkadoo I love you!                                                                                                                                                                                                                                                                                                                                                                                                                                                          </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>   0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </td><td>          NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td><td>2019-02-14 06:31:30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>2019-02-14 06:31:30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>UgwqXcaQ35eYM_uPdQl4AaABAg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </td></tr>
 	<tr><td>SpaceWalker 916                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 </td><td>Youu bite the peach the peach bite back                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td><td>Youu bite the peach the peach bite back                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td><td>Youu bite the peach the peach bite back                                                                                                                                                                                                                                                                                                                                                                                                                                                                         </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>   0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </td><td>          NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </td><td>2019-02-14 03:04:53                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>2019-02-14 03:04:53                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             </td><td>NA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </td><td>Ugz327hwc5fLXcp88dp4AaABAg                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </td></tr>
@@ -13360,15 +13363,15 @@ HIGH FIVES &amp; FIST BUMPS to everyone here &amp; across the globe for getting 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can use all columns for our analysis, for example, we can use this plot now to see the number of new comments
-over time</p>
+<p>In this dataframe, we already parsed the information extracted with the tuber package into formats that make the data easily usable. For example, we can use the DateTime column to see the number of new comments
+over time without much formatting</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[60]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Creating helper dataframe</span>
@@ -13675,7 +13678,7 @@ BCSiAAISUQD9fxsA2tH7yytmAAAAAElFTkSuQmCC"
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this section, we give a breif outline of text analysis for Youtube Comments.
-This exemplary part is largely based on this tutorial:</p>
+This part is largely based on this tutorial:</p>
 <p><a href="https://docs.quanteda.io/articles/pkgdown/examples/plotting.html">https://docs.quanteda.io/articles/pkgdown/examples/plotting.html</a></p>
 <p>We use the dataframe column without the Emojis for the pure textual analysis here</p>
 <p>First of all, we need to remove new line commands from comment texts</p>
@@ -13685,7 +13688,7 @@ This exemplary part is largely based on this tutorial:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Removing newline characters from comments</span>
@@ -13707,7 +13710,7 @@ This exemplary part is largely based on this tutorial:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In&nbsp;[62]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Listing first n comments in dataframe</span>
@@ -13762,14 +13765,14 @@ This step also simplifies the text by:</p>
 <li>removing all hyphens</li>
 <li>removing all URLs </li>
 </ul>
-<p>the idea is that each token will be an individual word</p>
+<p>the idea is that each comment will be split up into it's individual words</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[63]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Tokenizing the comments</span>
@@ -13804,7 +13807,7 @@ These words occur with about the same frequency in all kinds of texts and are th
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Creating Document-term frequency matrix</span>
@@ -13819,7 +13822,7 @@ These words occur with about the same frequency in all kinds of texts and are th
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We now have a matrix where each column represents a each token that occurs at least once in the collcetion of comments and each row represents a comment. If a token is contained in a comment, the respective cell has a 1 and if a token is not contained in a comment the respective cell will contain a 0.</p>
+<p>We now have a matrix where each column represents a token that occurs at least once in the collcetion of comments and each row represents a comment. If a token is contained in a comment, the respective cell in the matrix has a 1 and if a token is not contained in a comment the respective cell will contain a 0.</p>
 <p>We can use this document-term matrix to visualize the occurance of tokens</p>
 
 </div>
@@ -13827,7 +13830,7 @@ These words occur with about the same frequency in all kinds of texts and are th
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[97]:</div>
+<div class="prompt input_prompt">In&nbsp;[65]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Displaying the n most frequent tokens</span>
@@ -13860,19 +13863,19 @@ These words occur with about the same frequency in all kinds of texts and are th
 	<tr><td>burger</td><td>2984  </td><td> 5    </td><td>2671  </td><td>all   </td></tr>
 	<tr><td>like  </td><td>2389  </td><td> 6    </td><td>2235  </td><td>all   </td></tr>
 	<tr><td>love  </td><td>2179  </td><td> 7    </td><td>2108  </td><td>all   </td></tr>
-	<tr><td>just  </td><td>1949  </td><td> 8    </td><td>1849  </td><td>all   </td></tr>
-	<tr><td>good  </td><td>1660  </td><td> 9    </td><td>1609  </td><td>all   </td></tr>
-	<tr><td>best  </td><td>1646  </td><td>10    </td><td>1623  </td><td>all   </td></tr>
-	<tr><td>one   </td><td>1390  </td><td>11    </td><td>1340  </td><td>all   </td></tr>
-	<tr><td>guy   </td><td>1166  </td><td>12    </td><td>1129  </td><td>all   </td></tr>
-	<tr><td>damn  </td><td>1137  </td><td>13    </td><td> 821  </td><td>all   </td></tr>
-	<tr><td>back  </td><td>1106  </td><td>14    </td><td>1080  </td><td>all   </td></tr>
-	<tr><td>want  </td><td>1066  </td><td>15    </td><td>1050  </td><td>all   </td></tr>
-	<tr><td>people</td><td>1052  </td><td>16    </td><td> 984  </td><td>all   </td></tr>
-	<tr><td>bacon </td><td>1048  </td><td>17    </td><td> 964  </td><td>all   </td></tr>
-	<tr><td>man   </td><td>1042  </td><td>18    </td><td>1005  </td><td>all   </td></tr>
-	<tr><td>ever  </td><td>1008  </td><td>19    </td><td> 979  </td><td>all   </td></tr>
-	<tr><td>can   </td><td> 996  </td><td>20    </td><td> 958  </td><td>all   </td></tr>
+	<tr><td>video </td><td>2110  </td><td> 8    </td><td>1996  </td><td>all   </td></tr>
+	<tr><td>lol   </td><td>2104  </td><td> 9    </td><td>1956  </td><td>all   </td></tr>
+	<tr><td>just  </td><td>1949  </td><td>10    </td><td>1849  </td><td>all   </td></tr>
+	<tr><td>oh    </td><td>1796  </td><td>11    </td><td>1333  </td><td>all   </td></tr>
+	<tr><td>now   </td><td>1769  </td><td>12    </td><td>1730  </td><td>all   </td></tr>
+	<tr><td>get   </td><td>1756  </td><td>13    </td><td>1695  </td><td>all   </td></tr>
+	<tr><td>good  </td><td>1660  </td><td>14    </td><td>1609  </td><td>all   </td></tr>
+	<tr><td>best  </td><td>1646  </td><td>15    </td><td>1623  </td><td>all   </td></tr>
+	<tr><td>one   </td><td>1390  </td><td>16    </td><td>1340  </td><td>all   </td></tr>
+	<tr><td>d     </td><td>1171  </td><td>17    </td><td>1123  </td><td>all   </td></tr>
+	<tr><td>guy   </td><td>1166  </td><td>18    </td><td>1129  </td><td>all   </td></tr>
+	<tr><td>xd    </td><td>1153  </td><td>19    </td><td>1128  </td><td>all   </td></tr>
+	<tr><td>damn  </td><td>1137  </td><td>20    </td><td> 821  </td><td>all   </td></tr>
 </tbody>
 </table>
 
@@ -13896,7 +13899,7 @@ artifacts of online communication (e.g. xd or d as leftovers of smilies)</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># This is just an example, you can (and should) create your own list for each video</span>
@@ -13910,10 +13913,10 @@ artifacts of online communication (e.g. xd or d as leftovers of smilies)</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[67]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># We can create another document-frequency matrix that excludes the custom stopwords that we just defined,</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># We can create another document-frequency matrix that excludes the custom stopwords that we just defined</span>
 <span class="n">commentsDfm</span> <span class="o">&lt;-</span> <span class="nf">dfm</span><span class="p">(</span><span class="n">toks</span><span class="p">,</span> <span class="n">remove</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">quanteda</span><span class="o">::</span><span class="nf">stopwords</span><span class="p">(</span><span class="s">&quot;english&quot;</span><span class="p">),</span><span class="n">CustomStops</span><span class="p">))</span>
 </pre></div>
 
@@ -13924,7 +13927,7 @@ artifacts of online communication (e.g. xd or d as leftovers of smilies)</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[98]:</div>
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Recalculating and displaying the n most frequent tokens</span>
@@ -13992,7 +13995,7 @@ first of all, lets check the overall frequency across all comments</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[69]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Sort by reverse frequency order (i.e., from most to least frequent)</span>
@@ -14418,7 +14421,7 @@ AElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With the above method, weŕe only counting the overall occurance across all comments. This might be biased
+<p>With the above method, we're only counting the overall occurance across all comments. This might be biased
 by some users spamming the same tokens many times in the same comment while other comments might not contain
 the term at all. To see whether this is a problem in our data, lets plot the number of comments in which each
 token occurs at least once</p>
@@ -14428,7 +14431,7 @@ token occurs at least once</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[100]:</div>
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># sort by reverse document frequency order (i.e., from most to least frequent)</span>
@@ -14903,7 +14906,7 @@ in this notebook.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[101]:</div>
+<div class="prompt input_prompt">In&nbsp;[71]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Setting a random seed to make the wordcloud reproducible (this can be any number)</span>
@@ -15544,7 +15547,7 @@ AwgJgAGEBMAAQgJgACEBMICQABhASAAM/B+GAJPqSE7WUgAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[72]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># computing Sentiment Scores</span>
@@ -15566,7 +15569,7 @@ AwgJgAGEBMAAQgJgACEBMICQABhASAAM/B+GAJPqSE7WUgAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[73]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># summary statistics for sentiment scores per comment</span>
@@ -15577,10 +15580,31 @@ AwgJgAGEBMAAQgJgACEBMICQABhASAAM/B+GAJPqSE7WUgAAAABJRU5ErkJggg=="
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-25.0000   0.0000   0.0000   0.8276   2.0000  22.0000 </pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[104]:</div>
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># display comments with a sentiment score below x</span>
@@ -15624,7 +15648,7 @@ AwgJgAGEBMAAQgJgACEBMICQABhASAAM/B+GAJPqSE7WUgAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[105]:</div>
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># disyplay comments with a sentiment score above x</span>
@@ -15674,7 +15698,7 @@ AwgJgAGEBMAAQgJgACEBMICQABhASAAM/B+GAJPqSE7WUgAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[106]:</div>
+<div class="prompt input_prompt">In&nbsp;[76]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># display most negative/positive comment</span>
@@ -15730,7 +15754,7 @@ sentiments per comment can have some pitfalls. Consider these cases for example<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[107]:</div>
+<div class="prompt input_prompt">In&nbsp;[77]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Display specific comment</span>
@@ -15790,7 +15814,7 @@ sentiments per comment can have some pitfalls. Consider these cases for example<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[108]:</div>
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Display specific comment</span>
@@ -15873,7 +15897,7 @@ sentiments per comment can have some pitfalls. Consider these cases for example<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In&nbsp;[79]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># build helper dataframe to distinguish between positive, negative and neutral comments</span>
@@ -16329,15 +16353,15 @@ YQcAACAEYQcAACAEYQcAACAEYQcAACDE/wGeftH4ykKUTQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[80]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># distribution of comment sentiments (dotted line representd mean sentiment of all comments)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># distribution of comment sentiments</span>
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sentiment</span><span class="p">))</span> <span class="o">+</span>
   <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">Sentiment</span><span class="p">)),</span>
              <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
-  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Distribution of Comment Sentiment Scores - Schmoyoho Dayum video&quot;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Distribution of Comment Sentiment Scores - Schmoyoho Dayum video&quot;</span><span class="p">,</span> <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;dotted line represents mean sentiment of all comments&quot;</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span><span class="m">10</span><span class="p">))</span>
 </pre></div>
 
@@ -16369,7 +16393,7 @@ YQcAACAEYQcAACAEYQcAACAEYQcAACDE/wGeftH4ykKUTQAAAABJRU5ErkJggg=="
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAC/VBMVEUAAAABAQECAgIDAwME
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAADAFBMVEUAAAABAQECAgIDAwME
 BAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUW
 FhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJyco
 KCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6
@@ -16382,240 +16406,266 @@ lJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWm
 pqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4
 uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnK
 ysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc
-3Nzd3d3f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v
-7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///+KKEWV
-AAAACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO3de5zcVX3/8UNIaCCikSIgCQTk8uOm
-oOHiBQhRUFA2hgZCgACJARVKaYsItBCgXH7+pKSN/GrxF0NrxKAWrKAWSg02JhgNRLn1F7EQ
-QcGfcbnktveZPY/f9zuz2cycne+eM9+8z+7O5PX6Y2eze/bzPfOd7zM7m2TAWCLa7sxwb4Co
-GQISkSAgEQkCEpEgIBEJAhKRICARCQISkaAIkLaYUrse9he/Lf16urkke3Hpk8eYwiDzBv36
-Gq06btc52361ecGJe+96+PTH6hpRX5tvP3nCuCOnPxqwtN77kvc4irF3mm9s3+DBB7iXiaaq
-Ezx+onCypziQjjrqqCPGGTPu++mv3YvnJXPmtl8MCqm8st6Lb39z7N/3/2LVxGQbk0Ybc35v
-XUMGr+ou/Nc7zC5Hvn9fY1qK3i+p877kOE7dZY6ND6nqMtHUZJDSm+IvzzRjnkneWf3gU1Wf
-r7o6Sp8cHJL79Z42mcO2/eLZt5hPPFOwPV/f09xSzxBPlXeh81Bz4R+S28cPM3/j/ZI670uO
-49Rb9tj4kNKb/stEU9UJbg5I1vZ+ykyt8fkqSKUGh1RnG8yJ/e/3vs9cVv59doUZu7n+WVlV
-buxxc3h592vNIYFfEvM49ZY9dmggZV4mgpoFkn1lF/PC1vP51MwDxx58ycvpN9+kzyYf/dnq
-947aUPrkMabzC4fsevSfvpGs+wuzPP3SnyXfovtXlh6PJR/de5+PfS19707z+NMfH//2qcsr
-Dtr/2UvSLzq776M/NHts6nv3Q+ab1VMWmse/d9yuR1y5ufva94478p9qfiQBOOPA3Sf/767q
-o/ZtrNzd5oK+9874QKfvS0r3RXScRaftMeHjq6rv/dbTWjlw26mvVfbYZK8//chb3z7lRxmn
-pv+gXzFXlz5wgfkXZy/bBlR+vJx7mdgNt71n/FsOu/r/VQ+suB5q7iLpU2Zh6fZqc3PfxdLx
-V8ft/v7rt5QhVZyJAZvQFRVSciXc3wfpx2PMoVP2Mfu9bpdeYQ6+4aHko/+yl9lpK6SZ5uAT
-dzWTXqiC1L8yPTfnm1FHvXtnc25vOvCucQfPONyMWdN/zG2f/e7VZr8bvtn34avMDVtXtL74
-WvWUheYzo05sGWumfeStZ55gzL/X+oi9Y+dRh00eYz7SVnXUvo2Ve8js+5vKuz/ol/RBEhyn
-eI75o+MON+Yh99yUTmvlwG2nvlbZY+80F485dMYhZszPa25520F/P+qg9Es7dt+93dnLtgGV
-H699mfScbHb/4AffYo5srxpYDWnALtIeNSeXbg8wL5ZP8GvHmNFHTzAfeMvE6lM7cBO64kL6
-nPlffZBONEus7Z6e/t5Rfr5yp9njjF+02z5IuySX/punmRlVkPpXJkvuNwettfb5Q8y30w+M
-vb7XFueZP916nMrPVj61azHfqdpa5bqFZtQPkufUo8yhv003+ulaH3lm1ITV1r58vLm++qiV
-T7m6jzBjzn+0besvB/+SPkiC4/yzOWG9tf866h1F59yUTmvlwIpTX6PssXea9OfK4gXmqlpb
-rjzoSea55Eu/Yy5yH6dtAyo/Xvsy+b75QPLsYePx5rGqgdWQ3F2U6vnjUcme7RPpA186wX9h
-jnvV2m+PNROrT+3ATeiKC+lL5tK++/bHo7qTXz99w/e2XVIHF6zdCumydPXruye/pWRAeo9Z
-ln74R+bd6QeOTn9LedqcvvU4lZ+thHSYqf7ZvnLdQnN++v4Rpd/TnzVn1PrIdPNv6UdeGju+
-t+qoVT/wvHbhbsaM+dAN5WdZg39JHyTBcSbt9Kv05izzc+fclE5r5cCKU1+rzLF3mvel764y
-02ttufpUpn+SMzP9FlG9l20DKj9ezr1MvnVmacUdZnHVwGpI7i7KXWq+atNndl8tn+A3dtml
-9Dz2mhRS5ZkYuAldcSEtTH/X6PuONOsXfR/cekndaG0/pJ+VPjPHfC8DUmH0vuUvnrhzz9Yv
-faUfUtVnKyHtZ9ZW7qxq3ULzpfTdE836rbMGfmTf3cs/iH/QPF91VOdPDrY8/PljRxnznvS3
-0cG/pA/S9h/nD+b40odan99U69xUDqw49bWrPTYZdVP67otlSM6Wqw76snmvtW277VVwH6f+
-AVUf7zuqc5mU++3HU0jbBjqQ3BNXbpn5ePL2gLEbyid4lWkpffhXKaSKM1FjE7qG6qndMwca
-c+Dsb6Z/crb1kvo/1vZDeq20/Avm7zIgrduq4+TS8+B/St/ddiarPlsJ6cOm6rfhqnUL00cs
-fVS22H5Izkf6/s4wbVXVUWv8Edyb9x5j3r7e9yV9kLb/OD8xM2veq/JprRpYcerLffqSpF/5
-xm7dSB8kZ8tVB7XHmpfst8yfDdhL/4Dq5aXcy8S2PfyFcw9JdpweqX+gA8l9yMoV3rHLRrva
-nNt3gr9uPlf6cPfOE6vORI1N6BqqP2ywHd+6YF9j9lledUk5kG4zd289cStcSCeVJ55S+j27
-9KWVkCo+WwnpMvOFre8uHX1K9boASBvMHlf0VX3Uygt86eK+v8gsnGRu931JbUg5jvOj/j9s
-q3VuqgZWnPpyo9PLarlv7NaNZEGqOGjyO+DC5NngT2vupQ9S5fJS7mXy9ASz6xm3PHJj6Uj9
-A6uuhyxI9rPmm8kzu4f7Nv2tPkg9oydWnYkam9A1ZH/8nbb202ZSbUjlp3azk+ewfSduSTWk
-ntETyiP237lrIKSqz1ZC+rqZ0N737gXm5up1AZDsnrtvu1tZF/iH+h+VBemeB/+S2pByHOc3
-fffy94//tta5qRxYceprlDl2cEhVB02eRE3ZNPZd1tZ8nNIB1ctLuZfJMWZRe+nup0fqH1h1
-PWRC+s/kG+mkvXv6zt4TZpotH3hi1ZmosQldQ/AXsul9e/GY89KPFPdOzkEtSKXnyOt3G/uH
-5MSV/qDt7AF/2PCf6YeXmyPtQEhVn62E1DnBXFX+o85fjDGrq9eFQPpIeX3HR6dnX+B/ai7v
-e+88c5fvSzIg1X+c3j1G/zp9/3LzYK1zUzGw8tTXKHvsoJCqDmrtkTv/fflvGmrs5cXyHzZU
-Lk9zLpN2U/4B5qzykfoHVl4PmZCK+7xlefpng+Vjbti1/IcNN6SQKk/twE3oivhPhJ4/0+yS
-/tuP9L51/9GoHyXvLhv1rvTqOMm6kEbfkzj6kPnL9GSdlvx2ce/OZUj9K//FHPrf1j5/qPlW
-LUiVn62EZP9jZ3PGMz228J2JpT8YrFwXAmm5OTj5CbxzbvoXhNUX+En9h/hFstV1ye3vrzPj
-f+37kgxIOY7zt+bk5PnwT3d96xu1zk3FwMpTX6PssYNDqjyotTeaceb/uo9E5YDq5bUuk/Gj
-f5H8nHSzMV+sGlh5PWRCSn47OMo80389fc4c/6q1D+6WQqo8tQM3oSvqP1rdrfSvEUv37Taz
-0/s+eqQZ9d3kSt9p9LS7qyEdNNW8872jzfHJY/jbPcwBZx9jvpieuMqV55kx70uWnGdrQar8
-bBUk+923GTP2wDHGnN7mrAuBZK8yo4/+8J7m/e3VRy1vrK9vvNWYcYfsuZN56w+t70syIOU4
-TueHzW4fOHbUTvfVPDeVAytOfa0yxw4OqfKg6R/Wm2MGPBKVA6qX17pMrjHmgON23/1zZuxn
-KwdWXg/ZkFYY8x7bfz299r7k3k8yJ3xoYvWZGLgJXfFeRjH2kCvLf2Veum/Fb3xw77EHnbs6
-/cAde467vhrSYR1/tf+ux19f+icqz565127H/+uW0r/irVz5tdP23vu0Jf1f45zJbZ+thmT/
-cPOxe+x65Cf/bcC6IEj2ex+f+NbJf9fhHrW0sa29Mf+kiX/0rqn/c0P5l4N9SRakHMcp3nny
-2yaeudq5V/0/kG4bWHnqa5U11gOp4qBJB5m/HXCGqyBVL7cDL5OeBUeOO+JT6+x1e11ZNbDi
-esiGVNzXLLDbjtn518fvNuEvt5w6sfpMDNyELl7YR4qO2kn5qqIYAyMHJBL0lJkywgfGDki0
-/RWnm3tG9sDoAYm2u4/8sXmX9G9m5APjByTa7s4bN+VX/lXDOTB+QCISBCQiQUAiEgQkIkFA
-IhIEJCJBQCISBCQiQUAiEqSHtMFXd7d3Sf1t6ogwtK1nS4SpXRsjDO3pyvzUX51yyjn5hm5p
-z7mbwWrv2RRhaoxramOP/6KKCKnVV7HoXVJ/b3ZGGLrFboowtfv1CENtT+anWoyZmG/opvac
-uxmsdrshwtQY19Tr1n9RASkkIOXczWABCUiagBRhKpBEASnzUw/fc899+YYCybsGSCE1B6T8
-Acm7BkghASnCUCABSROQIkwFkiggRRgKJO8aIIUEpAhDgQQkTUCKMBVIooAUYSiQvGuAFBKQ
-IgwFEpA0ASnCVCCJAlKEoUDyrgFSSECKMBRIQNIEpAhTgSQKSBGGAsm7BkghNQekJfPn35Fv
-KJC8a4AUUnNA4vVIOQOSKiDl3M1gAQlImoAUYSqQRAEp81NAyhmQVAEp524GC0iBtfvq7fUu
-qb/OQoSh3bYrwtRiR4Shtpj5qbOM2S/f0K6enLsZrB7bGWFqjGuqw3ovqi0RIW3yVez1Lqm/
-tp4IQztte4SphS0RhtpC5qemJ9+R8g1t78q5m8Hqsm0Rpsa4pjZb70W1MSIk73dDntpFGMpT
-O338jKQKSDl3M1hAApImIEWYCiRRQMr8FJByBiRVQMq5m8ECEpA0ASnCVCCJAlLmp66dMmVG
-vqFA8q4BUkjNASl/QPKuAVJIIxjSed4EBwGSdw2QQgKSYIgbkICkCUgRpgJJFJCApA5IqoAk
-GOIGJCBpAlKEqUASBSQgqQOSKiAJhrgBCUiagBRhKpBEAQlI6oCkCkiCIW5AApImIEWYCiRR
-QAKSOiCpag5IvB4pZ0BSBSTBTt2ABCRNQIowFUiigAQkdUBSBSTBTt2ABCRNQIowFUiigAQk
-dUBSBSTBTt2ABCRNQIowFUiigAQkdUBSBSTBTt2ABCRNQIowFUiigAQkdUBSBSTBTt2ABCRN
-Qw1pzbJlK/IdBEjeNUAKqTkg5Q9I3jVACglIgiFuQAKSJiBFmAokUUACkjogqQKSYIgbkICk
-CUgRpgJJFJCApA5IqoAkGOIGJCBpAlKEqUASBSQgqQOSKiAJhrgBCUiagBRhKpBEAQlI6oCk
-qjkg3X3llTfkOwiQvGuAFFJzQOL1SDkDkiogCXbqBiQgaQJShKlAEgUkIKkDkiogCXbqBiQg
-aQJShKlAEgUkIKkDkiogCXbqBiQgaQJShKlAEgUkIKkDkiogCXbqBiQgaQJShKlAEgUkIKkD
-kqrmgHTLtGlz8x0ESN41QAqpOSDlD0jeNUAKCUiCIW5AApImIEWYCiRRQAKSOiCpApJgiBuQ
-gKQJSBGmNgKkLf8wZ9bfvGJt772XzF1UzL4FUlhAijC1ESDd8ek1a2+a02bvO3/VExcvspm3
-QAoLSBGmNgCktpYnre04Z3nhwkesXTmzK+sWSIEBKcLUBoD0m7/clDx9m/3ddS3rU1XPZd0C
-KTAgRZjaAJBKPd7yyzUtheSdmSuzbpM3X549e/ZlPb6s9S6pv0JvhKFFW4gwVbJTPyTBQQpF
-wRC3OCc1xjXVY70PVf/zsDBIhQen/4NdPiN9d87DWbfJm9umTp16Vq+v5PtbhHawoX5IiqPE
-qJEefu/UnrogvXTlzO/12r7vPCuybreu9n435KmdYAhP7aprhKd2z8249Y3kZl1L8lUdLc9m
-3QIpsKGGtHbNmqfyHQRI3jV1QOq56Cu96W1h9jJrV8/syLoFUmC8HinC1AaA9GTLY08mrbdL
-56x9/tLFNvMWSGEBKcLUBoD0UEupH9jeJfPmLk7/JUPGLZDCAlKEqQ0Aqd68xwaSYAiQqgOS
-KCABSR2QVAFJsFM3IAFJE5AiTAWSKCABSR2QVAFJsFM3IAFJE5AiTAWSKCABSR2QVAFJsFM3
-IAFJE5AiTAWSKCABSR2QVDUHJF5GkTMgqWoOSPkDkncNkEICkmCIG5CApAlIEaYCSRSQgKQO
-SKqAJBjiBiQgaQJShKlAEgUkIKkDkiogCYa4AQlImoAUYSqQRAEJSOqApApIgiFuQAKSJiBF
-mAokUUACkjogqWoOSLdMmzY330GA5F0DpJCaAxKvR8oZkFQBSbBTNyABSROQIkwFkiggAUkd
-kFQBSbBTNyABSROQIkwFkiggAUkdkFQBSbBTNyABSROQIkwFkiggAUkdkFQBSbBTNyABSROQ
-IkwFkiggAUkdkFQ1B6Q7L7roz/MdBEjeNUAKqTkg5Q9I3jVACglIgiFuQAKSJiBFmAokUUAC
-kjogqQKSYIgbkICkCUgRpgJJFJCApA5IqoAkGOIGJCBpAlKEqUASBSQgqQOSKiAJhrgBCUia
-gBRhKpBEAQlI6oCkqjkgrVm2bEW+gwDJuwZIITUHJF6PlDMgqQKSYKduQAKSJiBFmAokUUAC
-kjogqQKSYKduQAKSJiBFmAokUUACkjogqQKSYKduQAKSJiBFmAokUUACkjogqQKSYKduQAKS
-JiBFmAokUUACkjogqQKSYKduQAKSJl6PFGFqE0La4KtY9C6pv83dEYZ22LYIUwubBEP8kAQH
-aesUDHHrtJsjTI1xTW2y/osqIqROX7293iX1112MMLTHdkeYWuwSDPFDEhykuyAY4laIclJj
-XFNd1ntRdUSE5P1uyFM7wRCe2lXXhE/tvMcGkmAIkKoDkiggAUkdkFQBSTDEDUhA0gSkCFOB
-JApIQFIHJFVAEgxxAxKQNAEpwlQgiQISkNQBSRWQBEPcgAQkTUCKMBVIooCUCenaKVNm5DsI
-kLxrgBRSc0Di9Ug5A5IqIAl26gYkIGkCUoSpQBIFJCCpA5IqIAl26gYkIGkCUoSpQBIFJCCp
-A5IqIAl26gYkIGkCUoSpQBIFJCCpA5IqIAl26gYkIGkCUoSpQBIFJCCpA5Kq5oC0ZP78O/Id
-BEjeNUAKqTkg5Q9I3jVACglIgiFuQAKSJiBFmAokUUACkjogqQKSYIgbkICkCUgRpgJJFJCA
-pA5IqoAkGOIGJCBpAlKEqUASBSQgqQOSKiAJhrgBCUiagBRhKpBEAQlI6oCkqjkg/fiBB36Q
-7yBA8q4BUkjNAYnXI+UMSKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQ
-gKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqaA9Ks8eMP
-z3cQIHnXACmk5oCUPyB51wApJCAJhrgBCUiagBRhKpBEAQlI6oCkCkiCIW5AApImIEWYCiRR
-QAKSOiCpApJgiBuQgKQJSBGmAkkUkICkDkiqgCQY4gYkIGkCUoSpQBIFJCCpA5IqIAmGuAEJ
-SJqGGtK8SZNOyHcQIHnXACmk5oDEC/typodUvODN5G2hI83a3nsvmbuoOPAWSGEBKcLUhoDU
-vaQlhXR/S9J0a+87f9UTFy8aeAuksIAUYWojQPr+n7SUIH3p9rVJtnDhI9aunNnl3gIpMCBF
-mNoIkDa8vKIE6ZoHS79c17Le2raW59xbIAUGpAhTGwGStS+UIM2+dd4Ft75q17QUkl/MXOne
-Jm8eveuuu77a7qu317uk/joLEYZ2264IU4sdgiF+SP1LzzJmv3wH6eoR7NStx3ZGmBrjmuqw
-3otqSw5IW1puevqp6+a0LZ+RfmjOw+5t8ub6yZMnnxoykLY3P6T+pWcbs//wbbS5K/S/Fw6p
-sL5o7eYZj/V9B1rh3iZvXly9evXPN/gqFr1L6m9zd4ShHbYtwtSeTYIhfkj9Sz+ZPLXLd5C2
-TsFO3Trt5ghTeyPM3GT9F1UOSOUu//a6luSJYUfLs+7t1hXep5X8jCQYws9I1TXQz0hPXrEx
-AXPOTwqzl1m7emaHewukwIAUYWoDQWqfM//J5266vMcunbP2+UsX2wG3QAoLSBGmNhAk+9KN
-51604A1re5fMm7u4OPAWSGEBKcLUxoBUV95jA0kwBEjVAUkUkDIh3b9gwVfyHQRI3jVACqk5
-IOUPSN41QAoJSIIhbkACkiYgRZgKJFFAApI6IKkCkmCIG5CApAlIEaYCSRSQgKQOSKqAJBji
-BiQgaQJShKlAEgUkIKkDkiogCYa4AQlImoAUYSqQRAEJSOqApKo5IPGvv3MGJFXNAYnXI+UM
-SKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlI
-EaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqaA9K8SZNOyHcQIHnXACmk5oCUPyB5
-1wApJCAJhrgBCUiagBRhKpBEAQlI6oCkCkiCIW5AApImIEWYCiRRQAKSOiCpApJgiBuQgKQJ
-SBGmAkkUkICkDkiqgCQY4gYkIGkCUoSpQBIFJCCpA5IqIAmGuAEJSJqGGtKs8eMPz3cQIHnX
-ACmk5oDEC/tyBiRVQBLs1A1IQNIEpAhTgSQKSEBSByRVQBLs1A1IQNIEpAhTgSQKSEBSByRV
-QBLs1A1IQNIEpAhTgSQKSEBSByRVQBLs1A1IQNIEpAhTgSQKSEBSByRVzQHpxw888IN8BwGS
-dw2QQmoOSPkDkncNkEICkmCIG5CApAlIEaYCSRSQgKQOSKqAJBjiBiQgaQJShKlAEgUkIKkD
-kiogCYa4AQlImoAUYSqQRAEJSOqApApIgiFuQAqs4CtgSf0Ve2MMtcUIUyU79UMSHCTKSe2N
-clJjXFMF673/3REheRHzHUkwhO9I1TXhdyTvsYEkGFIHpCXz59+R7yBA8q4BUkjNAYnXI+UM
-SKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqAJNipG5CApAlI
-EaYCSRSQgKQOSKqAJNipG5CApAlIEaYCSRSQgKQOSKqaA9K1U6bMyHcQIHnXACmk5oCUPyB5
-1wApJCAJhrgBCUiagBRhKpBEAQlI6rYD0qy15dsffQZIrUACkndNLUjtr71mHnot7Q9XjwNS
-K5CA5F1TC9LNZlunAakVSEDyrqkF6WcLF5orFpa6+1UgtQIJSN41tSAlnfJ0fkBACgxIEaaO
-MEiKvMcGkmAIkKobYZA2fGr/PcsBqRVIQPKuyYA0z7z/058tBaRWIAHJuyYD0l6z8gMCUmBA
-ijB1hEHabTGQKgKSYIjbDgHp1MuBVFFzQOL1SDnbDki/fOeXe4DUH5AEO3XbISBNP8GMO+rY
-NCC1AglI3jUZkE7vD0itQAKSd00GJEXeYwNJMARI1QFJFJCApG47IB3VH5BagQQk75oMSNPT
-Tj/ITL0aSK1AApJ3TQakvh7a60kgtQIJSN41g0OyV50BpFYgAcm7xgPpH98OpFYgAcm7ZnBI
-3afuB6RWIAHJuyYDUvkvYz+6n/k8kFqBBCTvmgxIx5T74E3dQGoFEpC8azIgKfIeG0iCIXVA
-WrNs2Yp8BwGSd00mpN5fL/v3dUUglWoOSPkDkndNFqRH353+V+2OeBRIaUASDHHbISA9MWbC
-rf/64K3vHLMGSK1AApJ3TQakj016Lb1ZP4G/kE0DkmCI2w4Bae+/Lt9evQ+QWoEEJO+aDEh7
-bYW0N5BagQQk75oMSB87oPTUrnU/ntqlAUkwxG2HgPTEmAm3P/Tg7RPG8K+/04AkGOK2Q0Cy
-jx5V+uPvf8/vCEi+gBRh6kiDZIvrHn30Bf5CthyQBEPcdgxIb371h9Z+7bbXgZQGJMEQtx0C
-0rpJ5m+tvc1MeAlIrUACkndNBqRz3vbD9Obne54PpFYgAcm7JgPS3n3/0ZPPTwRSa7NAuvOi
-i/4830GA5F2TAWmPm8u31+8BpNZmgcTrkXK2Pf83ine3pTftR3wYSK1AApJ3TQakx0e/556f
-Pvn19456DEitQAKSd00GJPvQQelfyO67NL8jIPkCUoSpIw2S7V699J9Xtm+HIyD5AlKEqSMO
-0vbnPTaQBEOAVB2QRAEJSOqApApIgp26AQlImoAUYSqQRAEJSOqApApIgp267ciQihe8mbzt
-vfeSuYuK2bdACgtIEaY2BKTuJS0ppPvOX/XExYuyb4EUFpAiTG0ESN//k5YUUuHCR6xdObMr
-6xZIgQ01pFumTZub7yBA8q6pB9KGl1ekkNa1rLe2reW5rFsgBcbrkSJMbQRI1r6QQlrTUkje
-nbky6zZ58+ratWt/9aavYtG7pP42dUUY2m63RJjas1EwxA9JcJC2TsEQt067OcLUGNfURtvt
-W/JGDkjLZ6Tvznk46zZ5c/3kyZNPDRlI25sf0nDvcIeo0P9e3d+RVmTdJm8eveuuu77a7qu3
-17uk/joLEYZ2264IU4sdgiF+SIKDdPUIhrj12M4IU2NcUx3We1FtyQFpXUvyhLCj5dms262L
-vU8r+RlJMISfkaproJ+RCrOXWbt6ZkfWLZACA1KEqQ0EyS6ds/b5Sxdn3wIpLCBFmNpIkHqX
-zJu7uJh9C6SwgBRhamNAqivvsYEkGAKk6oAkCkhAUgckVUASDHEDEpA0ASnCVCCJAhKQ1AFJ
-VXNAWrtmzVP5DgIk7xoghdQckHg9Us6ApApIgp26AQlImoAUYSqQRAEJSOqApApIgp26AQlI
-moAUYSqQRAEJSOqApApIgp26AQlImoAUYSqQRAEJSOqApApIgp26AQlImoAUYSqQRAEJSOqA
-pApIgp26AQlImngZRYSpQBIFpExI+QOSdw2QQgKSYIgbkICkCUgRpgJJFJCApA5IqoAkGOIG
-JCBpAlKEqUASBSQgqQOSKiAJhrgBCUiagBRhKpBEAQlI6oCkCkiCIW5AApImIEWYCiRRQAKS
-OiCpag5It0ybNjffQYDkXQOkkJoDEq9HyhmQVAFJsFM3IAFJE5AiTAWSKCABSR2QVAFJsFM3
-IAFJE5AiTAWSKCABSWBY9OwAABCdSURBVB2QVAFJsFM3IAFJE5AiTAWSKCABSR2QVAFJsFM3
-IAFJE5AiTAWSKCABSR2QVDUHpLuvvPKGfAcBkncNkEJqDkj5A5J3DZBCApJgiBuQgKQJSBGm
-AkkUkICkDkiqgCQY4gYkIGkCUoSpQBIFJCCpA5IqIAmGuAEJSJqAFGEqkEQBCUjqgKQKSIIh
-bkACkiYgRZgKJFFAApI6IKlqDkhrli1bke8gQPKuAVJIzQGJ1yPlDEiqgCTYqRuQgKQJSBGm
-AkkUkICkDkiqgCTYqRuQgKQJSBGmAkkUkICkbpghdfjq7fUuqb+uQoShPbY7wtRip2CIH1L/
-0rOM2S/fQbp7BDt167FdEabGuKY6rfeiaosIaYOvYtG7pP42d0cY2mHbIkwtbBIM8UPqX/rJ
-5DtSvoO0dQp26tZpN0eYGuOa2mT9F1VESN7vhjy1EwzhqV11TfjUzntsIAmGAKk6IIkCEpDU
-AUkVkAQ7dQMSkDQBKcJUIIkCUiak/AHJuwZIIQFJMMQNSEDSBKQIU4EkCkhAUgckVUASDHED
-EpA0ASnCVCCJAhKQ1AFJFZAEQ9yABCRNQIowFUiigAQkdUBSBSTBEDcgAUkTkCJMBZIoIAFJ
-HZBUAUkwxA1IQNI01JCunTJlRr6DAMm7BkghNQckXo+UMyCpApJgp25AApImIEWYCiRRQAKS
-OiCpApJgp25AApImIEWYCiRRQAKSOiCpApJgp25AApImIEWYCiRRQAKSOiCpApJgp25AApIm
-IEWYCiRRQAKSOiCpag5IS+bPvyPfQYDkXQOkkJoDUv6A5F0DpJCAJBjiBiQgaQJShKlAEgUk
-IKkDkiogCYa4AQlImoAUYSqQRAEJSOqApApIgiFuQAKSJiBFmAokUUACkjogqdrhIcU4CpCA
-pAlIgq25AUkUkICkDkiqmgPSw/fcc1++gwDJuwZIITUHpO14PRKQfAEpJCAByROQQgISkDwB
-KSQgAckTkEICEpA8ASkkIAHJE5BCAhKQPAEpJCAByROQQgISkDwBKSQgAckTkEICEpA8ASkk
-IAHJE5BCAhKQPAEppOaANGv8+MPzHQRI3jVACqk5IOUPSN41QAoJSEDyBKSQgAQkT0AKCUhA
-8gSkkIAEJE9ACglIQPIEpJCABCRPeSAVOtKs7b33krmLigNvgRQWkARbc2skSPe3JE239r7z
-Vz1x8aKBt0AKC0iCrbk1EqQv3b42yRYufMTalTO73FsgBQYkwdbcGgnSNQ+Wbta1rLe2reU5
-9xZIgQFJsDW3RoI0+9Z5F9z6ql3TUkh+MXOlewukwIAk2JpbA0Ha0nLT009dN6dt+Yz0V3Me
-dm+TN7dNnTr1rF5f1nqX5GgHG+q/xEfqURrp4fdO7ckBqbC+aO3mGY/1fQda4d4mbxZMmzbt
-woKvZJS+Ym+MobYYYWqvYqj/EhccpBjjKL1RTmqMa6pgvRdVdw5I5S7/9rqW5PtZR8uz7u3W
-Fd7vhjy1EwzxX+L9S+dNmnRCvoPw1M67JgekJ6/YmIA55yeF2cusXT2zw70FUmC8sC/fbgat
-gSC1z5n/5HM3Xd5jl85Z+/yli+2AWyCFBaR8uxm0BoJkX7rx3IsWvJH8ALZk3tzFxYG3QAoL
-SPl2M2iNBCkw77GBJBgCpOqAJApIQFIHJFVAApInIIUEJCB5AlJIQAKSJyCFBCQgeQJSSEAC
-kicghQQkIHkCUkhAApInIIUEJCB5AlJIzQHp/gULvpLvIEDyrgFSSM0BKX9A8q4BUkhAApIn
-IIUEJCB5AlJIQAKSJyCFBCQgeQJSSEACkicghQQkIHkCUkhAApInIIUEJCB5AlJIQAKSJyCF
-BCQgeQJSSEACkicghQQkIHkCUkjNAYl//Z0zIKlqDki8HilnQFIFJCB5AlJIQAKSJyCFBCQg
-eQJSSEACkicghQQkIHkCUkhAApInIIUEJCB5AlJIQAKSJyCFBCQgeQJSSEACkicghQQkIHkC
-UkhAApInIIXUHJD+7OijT8t3ECB51wAppOaAlD8gedcAKaQmh+SfASRfQAoJSEDyBKSQgAQk
-T0AKCUhA8gSkkIAEJE9ACglIQPIEpJCABCRPQAoJSEDyBKSQgAQkT0AKCUhA8gSkkIAEJE9A
-CglIQPIEpJCABCRPQAqpOSDNGj/+8JwzgOQLSCE1B6TMF/YBafCApApIQPIEpJCABCRPQAoJ
-SEDyBKSQgAQkT0AKCUhA8gSkkIAEJE9ACglIQPIEpJCABCRPQAoJSEDyBKSQgAQkT0AKCUhA
-8gSkkIAEJE9ACqk5IP34gQd+kHMGkHwBKaTmgLQdM4DkC0ghAQlIniJC2uSr2OtdUn9tPRGG
-dtr2CFMLWwRD/Je4YobiKG5dtq3+L/IW45rabL0X1caIkNp99fZ6l9RfZyHC0G7bFWFqsUMw
-xH+JK2YojuLWYzvr/yJvMa6pDuu9qLZEhOT9bshTO8EQ/yWumKE4ihtP7YCkaYggDU317xxI
-QNIEJMH9dwOSKCANT/XvHEhA0gQkwf13A5IoIA1P9e8cSEDSBCTB/XcDkiggDU/17xxIQNLU
-VJD8uTsHEpA0DTWkDxxxxNHRmPhzdw4kIGkaakj7GbNbNCb+3J0DCUiagCS4/25AEgWkzICU
-MyCpApIgd+dAApImIAnuvxuQRAEpMyDlDEiqgCTI3TmQgKQJSIL77wYkUUDKDEg5A5IqIAly
-dw4kIGkCkuD+uwFJFJAyA1LOgKQKSILcnQMJSJqGGtK799lnUjQm/tydAwlImng9kuD+uwFJ
-FJBGau7OgQQkTQGQhvviV+beNyABSROQIpxUIIkC0kjNvW9AApImIEU4qUASBaSRmnvfgAQk
-Td3DfWkPbe7dBxKQNHUP96U9tLl3H0hA0tQ93Jf20ObefSABSVP3cF/aQ5t794EEJE3dw31p
-D23u3QcSkDR1D/elPbS5dx9IQAr6c2nv1O7Yl67TOTNmnD3Eh6zMvftAAlJjQuL1SDkDkiog
-CXLvPpCABKQcuXcfSEACUo7cuw8kIAEpR+7dBxKQgJQj9+4DCUhAypF794EEJCDlyL37QAIS
-kHLk3n0gAQlIOXLvPpCABKQcuXcfSEBqzNeAAylnQFIFpCFJ8VABSRSQMhvxkPz5HyogiQJS
-Zi0f+9gZw72H7cz/UAFJFJCaOf9DBSRRQGrm/A8VkEQBqZnzP1RAEgWkZs7/UAFJFJCaOf9D
-BSRRQGrm/A8VkEQBqZnzP1RAEgWkHbwIDz+QVAGpcYrw8ANJFZAapwgPP5BUAalxivDwA0kV
-kBqnCA8/kFQBqXGK8PADSVVzQDru4IOPGO49xC/Cww8kVc0BqQlejxRQhIcfSKqA1DhFePiB
-pApIzVTdD/9QQ+q995K5i4ojH9JwP5DDFZDK1X1NDTWk+85f9cTFi4A0UgNSubqvqSGGVLjw
-EWtXzuwaZkjD/TCN3IAUmnNNDTGkdS3rrW1reS4qpOE+xY0ckEIbXkhrWgrJ25krkzcP3n77
-7X/f4au31/3IcJ/A5g5IoTmXZact+K7lNiGk5TPSt3MeTt5cP3ny5FO3eyBpO9uY/Yd7D81a
-of892XekFcmb11955ZXfveGrWPQuqb+NXRGGttstEab2vBlhqO3J/NQ0YybmG7qlI+duBqvD
-boowNcY1tcF6L6rXhZDWtSRPFDtant366yg/I3kbor9HUtT9eoShtifzUy0JpHxDN7Xn3M1g
-8d/+zqgwe5m1q2d2ACkwIEWY2gSQ7NI5a5+/dHH/L73HBlKEoUDSN+T/smHJvLmLG+BfNtRf
-c0C686KL/jzfUCB51yghOXmPDaQIQweBlD8gedcAKSQgRRgKJCBpAlKEqUASBaQIQ4HkXQOk
-kIAUYSiQgKQJSBGmAkkUkCIMBZJ3DZBCAlKEoUACkiYgRZgKJFFAijAUSN41QAoJSBGGAglI
-moAUYSqQRAEpwlAgedcAKaTmgLR2zZqn8g0FkncNkEJqDki8HilnQFIFpJy7GSwgAUkTkCJM
-BZIoIGV+Ckg5A5IqIOXczWABCUiagBRhKpBEASnzU0DKGZBUASnnbgYLSEDSBKQIU4EkCkiZ
-nwJSzoCkCkg5dzNYQAKSJiBFmAokUUDK/BSQcgYkVUDKuZvBApKqc88e+mPm6/6pPxruLYQ2
-9bLMT21J/5dZI6cvT/2v4d5CYOun3hy+eBggfeL0oT9mvpZOfnS4txDasRcP9w5C+7vJzwz3
-FgL7/eRrwxcDaZCAFCEgqQJShICkb6RD+sLtQ3/MfK28tlEec3vdl4d7B6H94NqXhnsLgW24
-9hvhi4cBElHzBSQiQUAiEjT0kIoXvJm87b33krmLit7Fw1yhI224d+GvMc5mWqOc0bov0yGH
-1L2kJd3hfeeveuLiRUN98Hq7vyVp+nDvwl9jnM20RjmjdV+mQw3p+3/Sku6wcOEj1q6c2TXE
-R6+3L92+Nmm4d+GtQc5mWoOc0fov06GGtOHlFekO17Wst7at5bkhPnq9XfPgcO8gqAY5m2kN
-ckbrv0yH/mekF9IdrmkpJO/OXDnkR6+v2bfOu+DWV4d7F94a5GymNcgZrf8yHSZIy2ek7855
-eMiPXldbWm56+qnr5rQN9z58NcbZTGuUM1r/ZTp0kFbPmjXrN7aa+oohO3q9lXZbWF+0dvOM
-x4Z7M75G/Nnsr1HOaP2X6dBB6ly/fn26rRfKTz5bre1oeXbIjl5vW3ebdPm3h3cr/kb82XQa
-+We0/st0mJ7aFWYvS37XnznC/0LhySs2JufxnJ8M9z58NcbZTGuUM1r/ZTpMkOzSOWufv3Tx
-kB+8vtrnzH/yuZsu7xnufXhriLOZ1jBntO7LdLgg9S6ZN3fxiP+7+JduPPeiBW8M9y78NcbZ
-TGuUM1r3Zcq/tSMSBCQiQUAiEgQkIkFAIhIEJCJBQCISBCQiQUAiEgQkIkFAGun1/OMH9hw/
-+aaNg63Zh4dxuOMRGOEVTzMnzb/xzJ0OzPg/Svzs5nZrDx0fNKu0lqIEpBHeP5kb05uHdrqy
-9ucXmteCZ9WzluoLSCO8uab8rejoybU/D6SREZBGeOeZ8v+X63e/Tt68POuA3U9M/zs8p09/
-/rRx+1yy0Z5ijJllTz/W2jOnrzlt/Pu+033Vwbt/4pVB1lKUgDTCW2r2+OsX+95fO37CdTcd
-af4xwXHCOy/76rlmnn36CvPQ2jKk/7H/LXftN+a4KV/5jJk5yFqKEpBGel8cb8yBlz7Qnbz7
-iQPesLb75HGb7OnmH5Jfn7B/39O1EiSzPPlRyhxXtPak/QdZS1EC0oiv45Grj9nJTFxl23a6
-fkPSP5tH7enj0ldrf3rPSkj7Jh/5b7Og/PHstRQlIDVEL1w2Zq9NT5u+7rWnH5V+9LNVkNIP
-vWi+Vv549lqKEpBGdm3T7ym/c715eI25Znmp35XkDAopey1FCUgjvL1PKd/ebf5joyn9P01f
-Wdbmh5S9lqIEpBHeHPOl3uRm43t3fdOetMfvrC18eJ9CFY4/1IKUvZaiBKQR3oZDzFFzP3fe
-+J2+Ye2Tu73jqmuOMkttBY67zef/sxakzLUUJSCN9NrvOGGvcUdeWPrP5v7ykxPedtIjthLH
-q6fu9plakDLXUpSARCQISESCgEQkCEhEgoBEJAhIRIKARCQISESCgEQkCEhEgoBEJAhIRIKA
-RCQISESC/j/3D9TeJIGBRwAAAABJRU5ErkJggg=="
+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
+RU5ErkJggg=="
 >
 </div>
 
@@ -16651,7 +16701,7 @@ RCQISESC/j/3D9TeJIGBRwAAAABJRU5ErkJggg=="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Online communication is different from more traditional forms of written communication in many ways. One of those differences is the use of Emojis to express concepts and emotions. In many textual analyses, emojis are note used at all and simply discarded. In this notebook, we will have a look at the use of emojis as well. First of all, we need to make the Emojis usable. This has largely been done in the parsing step (see script for scraping and parsing the data), so we only need to do some minor preparations here.</p>
+<p>Online communication is different from more traditional forms of written communication in many ways. One of those differences is the use of Emojis to express concepts and emotions. In many textual analyses, emojis are not used at all and simply discarded. In this notebook, we will have a look at the use of emojis as well. First of all, we need to make the Emojis usable. This has largely been done in the parsing step (see script for scraping and parsing the data), so we only need to do some minor preparations here.</p>
 <p><strong>NOTE:</strong> There is a persistent issue with encoding problems for emojis in R on Windows. We tested the code in this notebook on several Windows machines and it should work there as well. If the code does not work for you offline, windows encoding problems are a likely culprit.</p>
 
 </div>
@@ -16659,7 +16709,7 @@ RCQISESC/j/3D9TeJIGBRwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># First, we need to define missing values correctly</span>
@@ -16690,7 +16740,7 @@ RCQISESC/j/3D9TeJIGBRwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[111]:</div>
+<div class="prompt input_prompt">In&nbsp;[82]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># we list the most frequent Emojis in the comments</span>
@@ -16762,7 +16812,7 @@ RCQISESC/j/3D9TeJIGBRwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[112]:</div>
+<div class="prompt input_prompt">In&nbsp;[83]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Sort by reverse frequency order (i.e., from most to least frequent)</span>
@@ -17402,7 +17452,7 @@ TkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Intreestingly, just as words do, emojis seem to follow a Zipf-like distribution</p>
+<p>Interestingly, just as words do, emojis seem to follow a Zipf-like distribution</p>
 <p><a href="https://en.wikipedia.org/wiki/Zipf%27s_law">https://en.wikipedia.org/wiki/Zipf%27s_law</a></p>
 <p>However, our plot still looks a bit bland. Lets enrich it!</p>
 
@@ -17411,7 +17461,7 @@ TkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[113]:</div>
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># creating mappings to display Scatterplot points as Emojis</span>
@@ -18378,7 +18428,7 @@ AAAQgcQOAAAAgIj/B7yaSPSf/AeEAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[114]:</div>
+<div class="prompt input_prompt">In&nbsp;[85]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># sort by reverse document frequency order (i.e., from most to least frequent)</span>
@@ -19016,7 +19066,7 @@ gAGEBBhASIABhAQYQEiAAYQEGEBIgAFfJo77vyCY2/UAAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[115]:</div>
+<div class="prompt input_prompt">In&nbsp;[86]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Creating a new frame order by document occurance frequenc rather than overall frequency</span>
@@ -19912,7 +19962,7 @@ experimental. First of all, we need a dictionary that maps sentiment to specific
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># import Emoji dictionary</span>
@@ -19944,7 +19994,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[88]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Creating quanteda dictionary object</span>
@@ -19961,7 +20011,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[89]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># we tokenize the Emoji-only column in our formatted dataframe</span>
@@ -19975,7 +20025,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># We can now replace the Emojis that appear in the dictionary with the corresponding sentiment scores</span>
@@ -19997,7 +20047,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[116]:</div>
+<div class="prompt input_prompt">In&nbsp;[91]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># total number of Emojis in the dataframe</span>
@@ -20033,7 +20083,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[117]:</div>
+<div class="prompt input_prompt">In&nbsp;[92]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># number of Emoji that could be assigned a sentiment score</span>
@@ -20066,7 +20116,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[118]:</div>
+<div class="prompt input_prompt">In&nbsp;[93]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Number of Emoji that could not be assigned a sentiment score</span>
@@ -20107,7 +20157,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[94]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># only keep the assigned sentiment scores for the Emoji vector</span>
@@ -20143,7 +20193,7 @@ You can view the Emoji sentiment scores online here</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[119]:</div>
+<div class="prompt input_prompt">In&nbsp;[95]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># plot histogram to check distribution of Emoji sentiment scores</span>
@@ -20427,7 +20477,7 @@ iEoISEQlBCSiEvr/Fh7lYZBxyW8AAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[122]:</div>
+<div class="prompt input_prompt">In&nbsp;[96]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># show comments with negative Emoji sum scores</span>
@@ -20500,7 +20550,7 @@ iEoISEQlBCSiEvr/Fh7lYZBxyW8AAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[123]:</div>
+<div class="prompt input_prompt">In&nbsp;[97]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># show comments with overly positive emoji sum scores</span>
@@ -20542,7 +20592,7 @@ iEoISEQlBCSiEvr/Fh7lYZBxyW8AAAAASUVORK5CYII="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As we can see, especially the positice outliers seem to occur because the same emoji gets spammend multiple times in the same comment</p>
+<p>As we can see, especially the positive outliers seem to occur because the same emoji gets spammend multiple times in the same comment</p>
 
 </div>
 </div>
@@ -20565,14 +20615,14 @@ iEoISEQlBCSiEvr/Fh7lYZBxyW8AAAAASUVORK5CYII="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If Emojis ar used to underline the affective valence of what a comment author wants to express, there should be a positive correlation between text sentiment and emoji sentiment. Lets check if that is the case</p>
+<p>If emojis are used to underline the affective valence of what a comment author wants to express, there should be a positive correlation between text sentiment and emoji sentiment. Lets check if that is the case</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># correlation between additive Emoji sentiment score and text sentiment score</span>
@@ -20605,7 +20655,7 @@ iEoISEQlBCSiEvr/Fh7lYZBxyW8AAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[125]:</div>
+<div class="prompt input_prompt">In&nbsp;[99]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># plot the relationship</span>
@@ -20997,15 +21047,14 @@ of the used Emojis. This can have multiple reasons:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can try to make our metrics less dependent on the amount of Emojis or words in the comments by comparing average sentiment
-per used word and per used Emoji for each comment</p>
+<p>We can try to make our metrics less dependent on the amount of Emojis or words in the comments by comparing average sentiment per used word and per used emoji for each comment</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Average Sentiment score per word for each comment</span>
@@ -21037,7 +21086,7 @@ per used word and per used Emoji for each comment</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[126]:</div>
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># build helper dataframe to distinguish between positive, negative and neutral comments</span>
@@ -21533,15 +21582,15 @@ HQBAIIQdAEAghB0AQCCEHQBAIP4fOfahbFFRxcoAAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># distribution of comment sentiments (dotted line representd mean sentiment of all comments)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># distribution of comment sentiments</span>
 <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">Sentiment</span><span class="p">))</span> <span class="o">+</span>
   <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">binwidth</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">geom_vline</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">xintercept</span><span class="o">=</span><span class="nf">mean</span><span class="p">(</span><span class="n">Sentiment</span><span class="p">)),</span>
              <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
-  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Average Comment Sentiment per Word - Schmoyoho Dayum Video&quot;</span><span class="p">)</span><span class="o">+</span>
+  <span class="nf">ggtitle</span><span class="p">(</span><span class="s">&quot;Average Comment Sentiment per Word - Schmoyoho Dayum Video&quot;</span><span class="p">,</span> <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&quot;dotted line represents mean sentiment of all comments&quot;</span><span class="p">)</span><span class="o">+</span>
   <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">limits</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">-5</span><span class="p">,</span><span class="m">5</span><span class="p">))</span>
 </pre></div>
 
@@ -21587,239 +21636,263 @@ uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnK
 ysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc
 3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u
 7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7////i
-sF19AAAACXBIWXMAABJ0AAASdAHeZh94AAAgAElEQVR4nO3de4BUdf3/8Q9XuSqRKYqBJZoB
-qcjFvKCiGJhuUhR5F0Qrq5+/MsvKSrvwLUtL+9qN6GKG3y4/S6008xJfNQulMi3EkrJCDUFc
-cC/s7sx+fufMzC4zwx4+57O8PrNz8Pn8Y2dYPp/3mTl7HuzswqqxRLTTmb5+AES7QkAiEgQk
-IkFAIhIEJCJBQCISBCQiQUAiEhQI0rMDzL55+dQXrzlm76GvnXePfHDZIZYcO3b4pHl3plg6
-z1wQ8IHYZWZ88c408+bCbX6kuXVHG0btl/AbSc/pavP9nXqEjgFNptDQg9/37507jP2L2a2x
-dPcJM/TFyjOf+LRrWyBIX4zO4L3qoQ/uZ8zw8QONObNTOPUpc+q2X/z5FWbwpNfva0zDjv4Y
-KG7xhFRxnBT93ZjCBbixvxnZHt95xPR/YUcbkq6oxOcUHtLkyZMnDo8+aD/buePYw813SveW
-mAX2pQTpcHOi/M/rR0eYU/6Usx3f29N8Sji2/ALfepA557no9oGDzSedW1be8sfeHidV+5sf
-xDc/MP3M/8Z3vmqm7nB9whWV/JzCQ4pv8o+fagb9aecO9EXzhtK9KeanVWd+l4b0uBn3VzOq
-TTqz83BzUfGP1PvMkBd1c8sv8AfMa3OFO6vNgSm39Oo4qVpk3hvfnG/OMh+J75xtLt3h+oQr
-Kvk51QZS9JE738zauQM9O2DA+sKdJ80eW6t+b5eGdLn5WPTS/pb47vnm2sK7LjVXRm/vm/+q
-kVP/OxZ2tfndyin9G23jZw4ZNeLgS5+N1+SvOnr4hKvyo46xFUuL3WVGbyndPdr8T3xzwxv2
-HjPnu/G9a80Dt00fOvHiF9svmzJ80rd7fE/lwR945I2jXjZrRfwyIepdpcFfM2eV7p185FbX
-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
+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
-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
-EQkCEpGg/w8n4jbbr7BvrAAAAABJRU5ErkJggg=="
+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
+tI2AFCAgqQJSgICkr6dD+sI1XX/M2nr44np5n9tLvtrd9yBvP7n4xe6+Czlbe/F38i/uBkhE
+b7yARCQISESCuhZSy+a4wvW2O85acEvrttd3Xxtvmj/vcy8XrqfvdU8rfRY5o6JqeZp2LaQf
+NETNKVy/86RHHzv9li49vEdfOmfZ8ivmNybX0/e6p5U+i5xRUbU8TbsW0o3XLI9Krracer+1
+D8/d0qXHz11jw+PWbv7IkuQXqXvd00qfRc6oqlqepl0L6aK7O66uaFgZn92nuvT4ufvrJ9dH
+H9VP+VHyi9S97mmlzyJnVFUtT9OuhXTK5888+fOvJFeXNbREb+c+3KXH9+uRhqeTy9S97mml
+zyJnVFUtT9MuhbSx4Yon/veSwuvkJcfHb+ff15XH96rl7jk3JVfS97qnlT6LnFFRNT1NuwrS
+0nnz5v21ZWWrtRuO/3l8Q5H6Q110/Pwl99TaFz8+99625Ib0ve5ppc9ijz2jxerjjNryu5f7
+pHYVpKaVK1e2FK5+9Hvx2xUNq6JPPhue7KLj569wT586/vPl341QuNc9rfRZ7LFntFCdnNGO
+PJ+mXfrS7vGPrYu/cvPr+HrLKQ9Gf/rP7aF/mbD1tK+3tV9P3+ueVvosckZF1fQ07VJIm+b/
+6+NPXfHRrXbxvdYumr/8mbMXduXhPXq84eePR62M72nHve6JtZ9Fzqiump6mXftVuxc/e8Jp
+10cf4K/4pLVtt5+5YGFP/Xv4exqSfpLc0/Z73RNrP4ucUWG1PE35t3ZEgoBEJAhIRIKARCQI
+SESCgEQkCEhEgoBEJAhIRIKARCQISD29rV87cOdhk65Yt601I3k3dne8B3p4rUeZaf/62dm9
+9lxb/fd/e+Uma/celmtWspaCBKQe3jfNZ+OLe3p9vPrv32BW557ls5b8AlIPb4EpfCjab1L1
+3wdSzwhIPbwTTeH/y/X3F6I3L83bY+gh8Y+4mTXnmaMGjzxrnT3cGDPPzpps7ew5y44atv9d
+zReMHXrMy9tYS0ECUg9vkRn+meeL15cPG3XJFePN1yIcB+x6/q0nmDPtEx8z9ywvQHrX6Ku+
+8vZ+Uw77+rlm7jbWUpCA1NP74jBj9jz7/zVHV4/ZY421zYcOXm9nmfjn8RwwuvhyLYFklkSf
+SpkprdZOG72NtRQkIPX4Nt//6ff2Mrs/aht7XbY26ltmsZ01OP4+7XN2TkPaLbrlz+b6wu3Z
+aylIQKqLnju/3y7rnzDF7rCzJsS3nlcGKb7peXNb4fbstRQkIPXsGud8o3DlMnPfMnPRkqS/
+J3K2CSl7LQUJSD28EYcXLm82P1tnkv+n6csPNrohZa+lIAGphzff3Bj/PLh1Ewe+bqcN/7u1
+LUeMbCnD8Vo1SNlrKUhA6uGt3ctMWPCpE4f1+o61jw962wUXTTCLbArHzebCX1aDlLmWggSk
+nt6mLx2wy+DxpyY/NPfp40btNO1+m8bxyoxB51aDlLmWggQkIkFAIhIEJCJBQCISBCQiQUAi
+EgQkIkFAIhIEJCJBQCISBCQiQUAiEgQkIkFAIhL0/wFiWJKAdukLOQAAAABJRU5ErkJggg=="
 >
 </div>
 
@@ -21831,7 +21904,7 @@ EQkCEpGg/w8n4jbbr7BvrAAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># display most negative/positive comment(s) (by average sentiment score per word)</span>
@@ -21984,7 +22057,7 @@ EQkCEpGg/w8n4jbbr7BvrAAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1">## Computing average Emoji sentiment per Comment</span>
@@ -22017,7 +22090,7 @@ EQkCEpGg/w8n4jbbr7BvrAAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[130]:</div>
+<div class="prompt input_prompt">In&nbsp;[105]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># plot histogram to check distribution of Emoji sentiment scores</span>
@@ -22316,7 +22389,7 @@ QgICICQgAEICAiAkIABCAgIgJCAAQgICICQgAEICAvj/zvVgN8h0+FgAAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[131]:</div>
+<div class="prompt input_prompt">In&nbsp;[106]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># correlation between averaged Emoji sentiment score and averaged text sentiment score</span>
@@ -22349,7 +22422,7 @@ QgICICQgAEICAiAkIABCAgIgJCAAQgICICQgAEICAvj/zvVgN8h0+FgAAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[132]:</div>
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># plot the relationship</span>
@@ -22933,7 +23006,7 @@ nAAAAABJRU5ErkJggg=="
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We do obtain a larger positive correlation with the averaged measures, however visual inspection reveals
-that there is no meaningful linear relationships. The data is clustered around one vertical line and multiple
+that there is no meaningful linear relationship. The data is clustered around one vertical line and multiple
 horizontal lines. This is likely due to:</p>
 <ul>
 <li>skewed distribution of number of Emojis per Comments and types of Emojis used (e.g. using the ROFL Emoji exactly once is by far
