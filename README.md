@@ -1,5 +1,25 @@
-# YoutubeScrapingEmojis
+# Automatic Sampling and Analysis of YouTube Comments
 
-Shared Project for scraping youtube comments and combining analysis of text with analysis of Emojis
+This repository contains an R script as well as an interactive Jupyter notebook to demonstrate how to automatically collect, format, and explore YouTube comments, including the emojis they contain.
+The script and notebook showcase the following steps:
+1. Getting access to the YouTube API
+2. Extracting comments for a video
+3. Formatting the comments & extracting emojis
+4. Basic sentiment analysis for text & emojis
 
-[![Binder](https://notebooks.gesis.org/binder/badge.svg)](https://notebooks.gesis.org/binder/v2/gh/JuKo007/YoutubeScrapingEmojis/master)
+If you use the materials from this repo for your own research, please cite it as:
+
+Kohne, J., Breuer, J., & Mohseni, M. R. (2018). Automatic Sampling and Analysis of YouTube Comments [R Script]. doi:10.17605/OSF.IO/HQSXE
+
+To start the interactive notebook in your browser, just click the following button:
+
+[![Binder](https://notebooks.gesis.org/binder/badge.svg)](https://notebooks.gesis.org/binder/v2/gh/JuKo007/YoutubeScrapingEmojis/UpdatedScript)
+
+
+# Examples
+
+![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/CommentsOvertime.png)
+
+![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/MostFrequentWords.png)
+
+![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/Top10Emoji.png)
