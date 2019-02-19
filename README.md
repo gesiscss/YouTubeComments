@@ -22,4 +22,6 @@ To start the interactive notebook in your browser, just click the following butt
 
 ![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/MostFrequentWords.png)
 
+![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/WordCloud.png)
+
 ![alt text](https://github.com/JuKo007/YoutubeScrapingEmojis/blob/UpdatedScript/Output/Top10Emoji.png)
