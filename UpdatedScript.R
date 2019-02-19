@@ -119,25 +119,25 @@ Comments <- subset(Comments, is.na(parentId))
 # The extracted data is still in a rather raw format.
 # To create a more detailed dataframe, we need to parse the data and extract relevant information.
 # We included a script containing the function for parsing comments in the GitHub repository. 
-# Make sure that you have this script (yt_parse.Rdata) in the working directory.
+# Make sure that you have this script (yt_parse.R) in the working directory.
 # for your Session with this script and then can load the function with the following command:
 
-load("yt_parse.Rdata")
+source("yt_parse.R")
 
 # NB: This function was not written to be computationally efficient. Parsing large amounts of comments (+50.000) may take a while.
 #     Nevertheless it might be useful for your own research if your dataset of interest is reasonably small (for reference: parsing ~ 50.000 comments took ~ 5 minutes on our laptops)
 
 # This function will create a dataframe with one row per comment or comment reply and 11 columns:
 #       1) YouTube username of the author
-#       2) Original, raw comment text
-#       3) Text where hex codes for Emojis are replaced with textual descriptions of emojis (e.g. EMOJI_grinningface)
+#       2) Original comment text
+#       3) Text where hex codes for emojis are replaced with textual descriptions of emojis (e.g. EMOJI_grinningface)
 #       4) Text where emojis have been deleted
-#       5) A column includingonly the emojis that have been used in the Ccmments (e.g. EMOJI_grinningface)
+#       5) A column including only the emojis that have been used in the comments (e.g. EMOJI_grinningface)
 #       6) Amount of likes that the comment has received
 #       7) List of URLs that are contained in the comment
 #       8) Timestamp when comment was published 
 #       9) Timestamp when comment was last edited
-#       10) YouTube Moderation Status Flags (e.g. "likely spam")
+#       10) YouTube moderation status flags (e.g. "likely spam")
 #       11) Unique comment ID
 
 # Now we can use the custom function defined above to format the "Comments" dataframe
@@ -146,28 +146,31 @@ FormattedComments <- yt_parse(Comments) # will take a while if the number of com
 # Next, we can see what the data looks like
 View(FormattedComments) # display dataframe to see if everything worked (you can close the View window/tab after inspecting the dataframe)
 
-# For example, we can use this plot now to see the number of new comments over time!
-CommentsCounter <- rep(1,dim(FormattedComments)[1])
-CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8]))
+# We can also create a plot to explore the development of the number of comments over time
+FormattedComments <- FormattedComments[order(FormattedComments$Published),] # sort comments by date
+CommentsCounter <- rep(1,dim(FormattedComments)[1]) # create comment counter variable
+CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8])) # create dataframe for plotting
 colnames(CounterFrame) <- c("CommentCounter","DateTime")
-
-# Binning by week
-CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week"))
-
-# Plotting
-ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) +
+CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week")) # bin by week
+PercTimes <- round(quantile(cumsum(CounterFrame$CommentCounter), probs = c(0.5, 0.75, 0.9, 0.99))) # compute percentiles
+CounterFrame$DateTime[PercTimes]
+ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) + # plot
   stat_summary(fun.y=sum,geom="bar") +
-  scale_x_date() +
-  ggtitle("Comments over Time - Schmoyoho Dayum Video")
+  scale_x_date()  +
+  labs(title = "Number of comments over time", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
+  geom_vline(xintercept = CounterFrame$DateTime[PercTimes],linetype = "dashed", colour = "red") +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][1]) , label = "50%", y = 3500), colour="red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][2]) , label = "75%", y = 3500), colour="red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][3]) , label = "90%", y = 3500), colour="red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][4]) , label = "99%", y = 3500), colour="red", angle=90, vjust = 1.2)
 
+#### Basic frequency analysis for text ####
 
-#### Basic Frequency Analysis for Text ####
-
-# In this section, we give a brief outline of text analysis for Youtube Comments.
+# In this section, we give a brief outline of text analysis for YouTube comments.
 # This exemplary part is largely based on this tutorial: https://docs.quanteda.io/articles/pkgdown/examples/plotting.html
 
-# We use the dataframe column without the Emojis for the pure textual analysis here
-# First of all, we need to remove new line commands from comment texts:
+# We use the dataframe column without the emojis for the textual analysis here
+# First of all, we need to remove new line commands from comment texts
 FormattedComments$TextEmojiDeleted <- gsub(FormattedComments$TextEmojiDeleted, pattern = "\\\n", replacement = " ")
 
 # display first 50 values of the variable we will use for these analyses
@@ -200,7 +203,7 @@ TermFreq <- textstat_frequency(commentsDfm)
 head(TermFreq, n = 50) # you can pick a different value for n to choose the length of the most frequent words table
 # in the printed table, docfreq indicates in how many comments the word appears
 
-#### For visualizing the overall frequency:
+#### Visualizing the overall frequency
 
 # Sort by reverse frequency order (i.e., from most to least frequent)
 TermFreq$feature <- with(TermFreq, reorder(feature, -frequency))
@@ -209,9 +212,9 @@ TermFreq$feature <- with(TermFreq, reorder(feature, -frequency))
 ggplot(head(TermFreq, n = 50), aes(x = feature, y = frequency)) + # you can change n to choose how many words are plotted
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Most Frequent Words - Schmoyoho Dayum video")
+  labs(title = "Most frequent words in comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
-#### For visualizing the number of comments containing the term at least once:
+#### Visualizing the number of comments containing the term at least once
 
 # sort by reverse document frequency order (i.e., from most to least frequent)
 TermFreq$feature <- with(TermFreq, reorder(feature, -docfreq))
@@ -220,26 +223,25 @@ TermFreq$feature <- with(TermFreq, reorder(feature, -docfreq))
 ggplot(head(TermFreq, n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many words are plotted 
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Words contained in most comments - Schmoyoho Dayum video")
+  labs(title = "Number of comments that each token is contained in", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
 # After inspecting the most frequent terms, we might want to exclude certain terms that are not indicative for the comments (e.g. the word "video")
 CustomStops <- c("video","oh","d","now","get","go","xd", "youtube") # This is just an example, you can (and should) create your own list for each video
 
-# We can create another document-frequency matrix that excludes the custom stopwords that we just defined,
+# We can create another document-frequency matrix that excludes the custom stopwords that we just defined
 commentsDfm <- dfm(toks, remove = c(quanteda::stopwords("english"),CustomStops))
 
-# We can create a Wordcloud with the most frequently used terms:
-
+# We can create a Wordcloud with the most frequently used terms
 set.seed(12345) # We need to set a random seed first (can be any number). This is necessary if we want the wordcloud to be reproducible.
 textplot_wordcloud(dfm_select(commentsDfm, min_nchar=1),
                    random_order=FALSE,
                    max_words=100)
 
-#### Sentiment Analysis for Text ####
+#### Sentiment analysis of comment text ####
 
-# We want to compute sentiment scores per comment. This is done by matching the textstrings with a dictionary of word sentiments.
+# We want to compute sentiment scores per comment. This is done by matching the text strings with a dictionary of word sentiments.
 # Depending on the type of video you want to analyze, a different sentiment dictionary might be suitable.
-# For youtube videos, we decided to use the AFINN dictionary (http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010)
+# For this example, we decided to use the AFINN dictionary (http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010)
 # For more options, check: https://www.rdocumentation.org/packages/syuzhet/versions/1.0.4/topics/get_sentiment 
 CommentSentiment <- get_sentiment(FormattedComments$TextEmojiDeleted, method = "afinn")
 
@@ -259,7 +261,7 @@ FormattedComments$TextEmojiDeleted[CommentSentiment == min(CommentSentiment)]
 FormattedComments$TextEmojiDeleted[CommentSentiment == max(CommentSentiment)]
 
 
-#### Visualizing Comment Sentiments
+#### Visualizing comment sentiments
 
 # build helper dataframe to distinguish between positive, negative and neutral comments
 Desc <- CommentSentiment
@@ -272,41 +274,40 @@ colnames(df) <- c("Comment","Sentiment","Valence")
 # display amount of positive, negative, and neutral comments
 ggplot(data=df, aes(x=Valence, fill = Valence)) +
   geom_bar(stat='count') +
-  ggtitle("Comment Sentiment - Schmoyoho Dayum video")
+  labs(title = "Comment Sentiment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
-
-# distribution of comment sentiments (dotted line representd mean sentiment of all comments)
+# distribution of comment sentiments (dotted line represents mean sentiment of all comments)
 ggplot(df, aes(x=Sentiment)) +
   geom_histogram(binwidth = 1) +
   geom_vline(aes(xintercept=mean(Sentiment)),
              color="black", linetype="dashed", size=1) +
-  ggtitle("Distribution of Comment Sentiment Scores - Schmoyoho Dayum video") +
+  labs(title = "Distribution of Comment Sentiment Scores", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   scale_x_continuous(limits=c(-10,10))
 
 
+#### Emoji frequency analysis ####
 
-#### Emoji Frequency Analysis ####
+# So far, most research has simply ignored emojis in text as noise that should be removed
+# However, emojis do confer emotions and meaning, and give more context to the textual data.
+# In the following, we will keep the emojis, analyze their frequency,
+# their sentiment, and compare them to the textual context of the comment they appear in.
 
-# So far, most research has simply discarded Emojis in text as noise that should be removed
-# to make the textual data more accessible. However, Emojis do confer emotions and meaning,
-# and give more context to the textual data. In this script, we will keep the Emojis, analyze their frequency,
-# their sentiment, and compare them to their textual context.
-
-# First, we need to define missing values correctly
+# First, we need to correctly define missing values in the emoji variable
 FormattedComments$Emoji[FormattedComments$Emoji == "NA"] <- NA
 
 # next, we remove spaces at the end of the string
 FormattedComments$Emoji <- substr(FormattedComments$Emoji, 1, nchar(FormattedComments$Emoji)-1)
 
-# then we tokenize Emoji descriptions (important for comments that contain more than one Emoji)
+# then we tokenize emoji descriptions (important for comments that contain more than one Emoji)
 EmojiToks <- tokens(FormattedComments$Emoji)
 
-# afterwards, we create an Emoji frequency matrix, excluding "NA" as a term
+# afterwards, we create an emoji frequency matrix, excluding "NA" as a term
 EmojiDfm <- dfm(EmojiToks, remove = "NA")
 
-# next, we list the most frequent Emojis in the comments
+# next, we list the most frequent emojis in the comments
 EmojiFreq <- textstat_frequency(EmojiDfm)
 head(EmojiFreq, n = 10) # you can pick a different value for n to choose the length of the most frequent Emojis table
+# the variable docfreq indicates in how many comments the emoji appears
 
 #### Visualizing by overall frequencies
 
@@ -317,9 +318,9 @@ EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -frequency))
 ggplot(head(EmojiFreq, n = 50), aes(x = feature, y = frequency)) + # you can change n to choose how many Emojis are plotted 
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Most frequent Emojis - Schmoyoho Dayum Video")
+  labs(title = "Most frequent emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
-# creating mappings to display Scatterplot points as Emojis
+# To make the plot prettier, we create mappings to display scatterplot points as the respective emojis
 mapping1 <- geom_emoji(data = EmojiFreq[EmojiFreq$feature == "emoji_facewithtearsofjoy",], aes(feature,frequency), emoji = "1f602")
 mapping2 <- geom_emoji(data = EmojiFreq[EmojiFreq$feature == "emoji_hamburger",], aes(feature,frequency), emoji = "1f354")
 mapping3 <- geom_emoji(data = EmojiFreq[EmojiFreq$feature == "emoji_frenchfries",], aes(feature,frequency), emoji = "1f35f")
@@ -334,11 +335,11 @@ mapping10 <- geom_emoji(data = EmojiFreq[EmojiFreq$feature == "emoji_redheart",]
 # Sort by reverse frequency order
 EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -frequency))
 
-# Plotting x most common Emojis using their graphical representation as points in the scatterplot
+# Plot x most common Emojis using their graphical representation as points in the scatterplot
 ggplot(EmojiFreq[1:10], aes(x = feature, y = frequency)) +
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("10 Most Frequent Emojis - Schmoyoho Dayum Video") +
+  labs(title = "10 most frequent emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   mapping1 +
   mapping2 +
   mapping3 +
@@ -351,7 +352,7 @@ ggplot(EmojiFreq[1:10], aes(x = feature, y = frequency)) +
   mapping10
 
 
-#### Visualizing by number of comments containing the Emoji at least once
+#### Visualizing by number of comments containing the emoji at least once
 
 # sort by reverse document frequency order (i.e., from most to least frequent)
 EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -docfreq))
@@ -360,12 +361,12 @@ EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -docfreq))
 ggplot(head(EmojiFreq,n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many Emojis are plotted 
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Emojis contained in most Comments - Schmoyoho Dayum Video")
+  labs(title = "Emojis contained in most comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
 # Creating a new frame order by document occurance frequenc rather than overall frequency
 NewOrder <- EmojiFreq[order(-EmojiFreq$docfreq),]
 
-# creating mappings to display Scatterplot points as Emojis
+# To make the plot prettier, we create mappings to display scatterplot points as the respective emojis
 mapping1 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_facewithtearsofjoy",], aes(feature,docfreq), emoji = "1f602")
 mapping2 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_hamburger",], aes(feature,docfreq), emoji = "1f354")
 mapping3 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_loudlycryingface",], aes(feature,docfreq), emoji = "1f62d")
@@ -377,11 +378,11 @@ mapping8 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_rollingonthefl
 mapping9 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_thumbsup",], aes(feature,docfreq), emoji = "1f44d")
 mapping10 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_smilingfacewithheart-eyes",], aes(feature,docfreq), emoji = "1f60d")
 
-# Plotting 10 Emojis that most comments mention at least once
+# Plot 10 Emojis that most comments mention at least once
 ggplot(NewOrder[1:10], aes(x = feature, y = docfreq)) +
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  ggtitle("Emojis contained in most Comments - Schmoyoho Dayum Video") +
+  labs(title = "Top 10 emojis contained in most comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   mapping1 +
   mapping2 +
   mapping3 +
@@ -394,21 +395,20 @@ ggplot(NewOrder[1:10], aes(x = feature, y = docfreq)) +
   mapping10
 
 
-#### Emoji Sentiment Analysis ####
+#### Emoji sentiment analysis ####
 
-# Emojis are often used to confer emotions (hence the name), so they might be valuable addition
-# to assess the sentiment of a comment. Unfortunately, there are no established framework to
-# use sentiment analyses on Emojis to our knowledge. Therefore, our approach here will be largely
-# experimental.
+# Emojis are often used to confer emotions (hence the name), so they might be a valuable addition
+# to assess the sentiment of a comment. The following part of the script is a suggestion how to do this.
 
-# First, we need a dictionary that maps Emojis to a specific sentiment score
+# First, we need a dictionary that maps emojis to a specific sentiment score
 
-# import Emoji dictionary
+# import Emoji dictionary (from the lexicon package)
 EmojiSentiments <- emojis_sentiment
 ?emojis_sentiment # view a short description of this dictionary from the documentation for the lexicon package
 
-# Unfortunately, the dictionary only contains 734 different Emojis. However, those are by far the most frequently used ones
-# you can view the Emoji sentiment scores online here: http://kt.ijs.si/data/Emoji_sentiment_ranking/index.html
+# Unfortunately, the dictionary only contains 734 different Emojis. 
+# Those were the most frequently used ones when the study on which the dictionars is based was conducted.
+# You can view the emoji sentiment scores online here: http://kt.ijs.si/data/Emoji_sentiment_ranking/index.html
 
 # we have to match the sentiment scores to our descriptions of the emojis, and create a quanteda dictionary object
 EmojiNames <- paste0("emoji_",gsub(" ","",EmojiSentiments$name))
@@ -416,39 +416,39 @@ EmojiSentiment <- cbind.data.frame(EmojiNames,EmojiSentiments$sentiment,EmojiSen
 names(EmojiSentiment) <- c("word","sentiment","valence")
 EmojiSentDict <- as.dictionary(EmojiSentiment[,1:2])
 
-# we tokenize the Emoji-only column in our formatted dataframe
+# we then tokenize the emoji-only column in our formatted dataframe
 EmojiToks <- tokens(tolower(FormattedComments$Emoji))
 
-# We can now replace the Emojis that appear in the dictionary with the corresponding sentiment scores
+# We can now replace the emojis that appear in the dictionary with the corresponding sentiment scores
 EmojiToksSent <- tokens_lookup(x = EmojiToks, dictionary = EmojiSentDict)
 
-#### Check how many Emojis we can assign sentiment scores to
+#### Check how many emojis we can assign sentiment scores to
 
-# total number of Emojis in the dataframe
+# total number of emojis in the dataframe
 AllEmoji <- unlist(EmojiToksSent)
 names(AllEmoji) <- NULL
 AllNonNAEmoji <- AllEmoji[AllEmoji!="NA"]
 length(AllNonNAEmoji)
 
-# Number of Emoji that could not be assigned a sentiment score
+# Number of emojis that could not be assigned a sentiment score
 length(grep("emoji_",AllNonNAEmoji))
 
-# number of Emoji that could be assigned a sentiment score
+# number of emojis that could be assigned a sentiment score
 length(grep("0.",AllNonNAEmoji))
 
-# Percentage of Emoji that could not be assigned a sentiment score
-length(grep("emoji_",AllNonNAEmoji))/length(AllNonNAEmoji)
+# Percentage of emojis that could not be assigned a sentiment score
+(length(grep("emoji_",AllNonNAEmoji))/length(AllNonNAEmoji))*100
 
-# Percentage of Emoji that could be assigned a sentiment score
-length(grep("0.",AllNonNAEmoji))/length(AllNonNAEmoji)
+# Percentage of emojis that could be assigned a sentiment score
+(length(grep("0.",AllNonNAEmoji))/length(AllNonNAEmoji))*100
 
-#### Computing sentiment scores for comments based on Emoji
+#### Compute sentiment scores for comments based on emojis used in them
 
-# only keep the assigned sentiment scores for the Emoji vector
+# only keep the assigned sentiment scores for the emoji vector
 AllEmojiSentiments <- tokens_select(EmojiToksSent,EmojiSentiment$sentiment,"keep")
 AllEmojiSentiments <- as.list(AllEmojiSentiments)
 
-# define custom function to add up sentiment scores of Emojis per comment (you have to highlight the whole function and run it as a whole)
+# define custom function to add up sentiment scores of emojis per comment (you have to highlight the whole function and run it as a whole)
 
 AddEmojiSentiments <- function(x){
   
@@ -457,19 +457,19 @@ AddEmojiSentiments <- function(x){
   
 }
 
-# Applying the function to every comment that contains Emojis (only those Emojis that have a sentiment score will be used)
+# Apply the function to every comment that contains emojis (only those emojis that have a sentiment score will be used)
 AdditiveEmojiSentiment <- lapply(AllEmojiSentiments,AddEmojiSentiments)
 AdditiveEmojiSentiment[AdditiveEmojiSentiment == 0] <- NA
 AdditiveEmojiSentiment <- unlist(AdditiveEmojiSentiment)
 
-# plot histogram to check distribution of Emoji sentiment scores
+# plot histogram to check distribution of emoji sentiment scores
 AES_df <- data.frame(AdditiveEmojiSentiment)
 ggplot(AES_df, aes(x = AES_df[,1])) +
   geom_histogram(binwidth = 1) +
-  labs(title = "Distribution of Summed Emoji Sentiment Scores by Comment") +
-  xlab("Emoji Sentiment summed per Comment")
+  labs(title = "Distribution of Summed Emoji Sentiment Scores by Comment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
+  xlab("Emoji sentiment summed per comment")
 
-# show comments with negative Emoji sum scores
+# show comments with negative emoji sum scores
 EmojiNegComments <- FormattedComments[AdditiveEmojiSentiment < 0,2]
 EmojiNegComments[is.na(EmojiNegComments) == F]
 
@@ -483,40 +483,38 @@ EmojiPosComments[is.na(EmojiPosComments) == F]
 EmojiPosEmojis <- FormattedComments[AdditiveEmojiSentiment > 20,5]
 EmojiPosEmojis[is.na(EmojiPosEmojis) == F]
 
-# correlation between additive Emoji sentiment score and text sentiment score
+# correlation between additive emoji sentiment score and text sentiment score
 cor(CommentSentiment,AdditiveEmojiSentiment,use="complete.obs")
 
 # plot the relationship
 TextEmojiRel <- data.frame(CommentSentiment,AdditiveEmojiSentiment)
 ggplot(TextEmojiRel, aes(x = CommentSentiment, y = AdditiveEmojiSentiment)) + geom_point(shape = 1) +
-  ggtitle("Scatterplot for Comment Sentiment and Emoji Sentiment") +
+  labs(title = "Scatterplot of comment sentiment and emoji sentiment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
   scale_x_continuous(limits=c(-15,15))
 
 # As we can see, there seems to be no relationship between the sentiment scores of the text and the sentiment
-# of the used Emojis. This can have multiple reasons:
-#  - Comments that score very high (positive) on Emoji Sentiment typically contain very little text
-#  - Comments that score very low  (negative) on Emoji Sentiment typically contain very few Emojis
-#  - Sentiment analysis is not perfect, there is a lot of room for error in both metrics
-#  - Most Comment Text Sentiments are neutral
-#  - Emojis are very much context dependent: A laughing Emoji can mean very different things, depending on context
-#    (e.g. "This guy is hilarious" vs. "You're just pathetic"). However, we only consider a singular score for each Emoji
+# of the used emojis. This can have multiple reasons:
+#  - Comments that score very high (positive) on emoji sentiment typically contain very little text
+#  - Comments that score very low  (negative) on emoji sentiment typically contain very little text
+#  - dictionary based bag-of-words/-emojis sentiment analysis is not perfect - there is a lot of room for error in both metrics
+#  - most comment text and emoji sentiments are neutral
+#  - emojis are very much context dependent, bur we only consider a single sentiment score for each emoji
 
-# We can try to make our metrics less dependent on the amount of Emojis or words in the comments by comparing average sentiment
-# per used word and per used Emoji for each comment
-
+# We can try to make our metrics less dependent on the amount of emojis or words in the comments by comparing average sentiment
+# per used word and per used emoji for each comment
 WordsInComments <- sapply(FormattedComments$TextEmojiDeleted,function(x){A <- strsplit(x," ");return(length(A[[1]]))})
 names(WordsInComments) <- NULL
 
-# Computing average sentiment score per word instead of using the overall sum
+# Compute average sentiment score per word instead of using the overall sum
 AverageSentimentPerWord <- CommentSentiment/WordsInComments
 
-# Saving a copy of the full vector for later
+# Save a copy of the full vector for later use
 FullAverageSentimentPerWord <- AverageSentimentPerWord
 
 # We exclude comments that do not have any words in them
 AverageSentimentPerWord <- AverageSentimentPerWord[is.nan(AverageSentimentPerWord) == FALSE]
 
-#### Visualizing Average Comment Sentiments per Word
+#### Visualize average comment sentiments per word
 
 # build helper dataframe to distinguish between positive, negative and neutral comments
 Desc <- AverageSentimentPerWord
@@ -529,25 +527,23 @@ colnames(df) <- c("Comment","Sentiment","Valence")
 # display amount of positive, negative, and neutral comments
 ggplot(data=df, aes(x=Valence, fill = Valence)) +
   geom_bar(stat='count') +
-  ggtitle("Average Comment Sentiment per Word - Schmoyoho Dayum Video")
-
+  labs(title = "Average comment sentiment per word", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
 # distribution of comment sentiments (dotted line representd mean sentiment of all comments)
 ggplot(df, aes(x=Sentiment)) +
   geom_histogram(binwidth = 1) +
   geom_vline(aes(xintercept=mean(Sentiment)),
              color="black", linetype="dashed", size=1) +
-  ggtitle("Average Comment Sentiment per Word - Schmoyoho Dayum Video")+
+  labs(title = "Distribution of average comment sentiment per word", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
   scale_x_continuous(limits=c(-5,5))
 
 # display most negative/positive comment (by average sentiment score per word)
 df$Comment[AverageSentimentPerWord == min(AverageSentimentPerWord)]
 df$Comment[AverageSentimentPerWord == max(AverageSentimentPerWord)]
 
+## Compute average emoji sentiment per comment
 
-## Computing average Emoji sentiment per Comment
-
-# define custom function to add up sentiment scores of Emojis per comment (you have to highlight the whole function and run it as a whole)
+# define custom function to add up sentiment scores of emojis per comment (you have to highlight the whole function and run it as a whole)
 
 AverageEmojiSentiments <- function(x){
   
@@ -556,45 +552,39 @@ AverageEmojiSentiments <- function(x){
   
 }
 
-# Applying the function to every comment that contains Emojis (only those Emojis that have a sentiment score will be used)
+# Apply the function to every comment that contains emojis (only those emojis that have a sentiment score will be used)
 AverageEmojiSentiment <- lapply(AllEmojiSentiments,AverageEmojiSentiments)
 
-# saving a full copy for later
+# save a full copy of the vector for later use
 FullAverageEmojiSentiment <- unlist(AverageEmojiSentiment)
 
 AverageEmojiSentiment[AverageEmojiSentiment == 0] <- NA
 AverageEmojiSentiment <- unlist(AverageEmojiSentiment)
 
-# We exclude comments that do not contain Emojis
+# We exclude comments that do not contain emojis
 AverageEmojiSentiment <- AverageEmojiSentiment[is.nan(AverageEmojiSentiment) == FALSE]
 
-# plot histogram to check distribution of Emoji sentiment scores
+# plot histogram to check distribution of emoji sentiment scores
 AvES_df <- data.frame(AverageEmojiSentiment)
 ggplot(AvES_df, aes(x = AvES_df[,1])) +
   geom_histogram(binwidth = 0.2) +
-  labs(title = "Distribution of Averaged Emoji Sentiment Scores by Comment") +
-  xlab("Emoji Sentiment averaged per Comment") 
+  labs(title = "Distribution of averaged emoji sentiment scores by comment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
+  xlab("Emoji sentiment averaged per comment") 
 
 ## Correlation
 
-# correlation between averaged Emoji sentiment score and averaged text sentiment score
+# correlation between averaged emoji sentiment score and averaged text sentiment score
 cor(FullAverageSentimentPerWord,FullAverageEmojiSentiment,use="complete.obs")
 
 # plot the relationship
 TextEmojiRel <- data.frame(FullAverageSentimentPerWord,FullAverageEmojiSentiment)
 ggplot(TextEmojiRel, aes(x = FullAverageSentimentPerWord, y = FullAverageEmojiSentiment)) + geom_point(shape = 1) +
-  ggtitle("Averaged Sentiment Scores")
+  labs(title = "Averaged sentiment scores for text and emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
 # We do obtain a larger positive correlation with the averaged measures, however visual inspection reveals
-# that there is no meaningful linear relationships. The data is clustered around one vertical line and multiple
-# horizontal lines. This is likely due to:
+# that there is no meaningful linear relationships. The data are clustered around one vertical line and multiple
+# horizontal lines. This is likely in large parts due to:
 
-# - skewed distribution of number of Emojis per Comments and types of Emojis used (e.g. using the ROFL Emoji exactly once is by far
-#   the most common case of Emoji use under this particular video)
-# - Most common Average Sentiment per Word is zero
-
-# Conclusion:
-#   - using Emojis in your textanalysis can give more context to your corpus and reduce ambiguity
-#   - Simple dictonary analysis of sentiments does not work well for Emojis
-#   - In the future, approaches for sentiment analysis should integrate text and emoji in a metric that accounts for their
-#     interdepence
+# - skewed distribution of number of emojis per comment and types of emojis used (e.g., using the ROFL emoji exactly once is by far
+#   the most common case for this particular video)
+# - most common average sentiment per word is zero
