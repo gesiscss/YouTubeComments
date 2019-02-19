@@ -1,9 +1,11 @@
-# Methods and Tools for Automatic Sampling and Analysis of YouTube Comments
+# Automatic Sampling and Analysis of YouTube Comments
 
-This repository contains materials for a research project for the automatic collection and analysis of YouTube comments.
-Specifically, it contains an R script that walks the user through setting up an environment, creating a Google Account and authenticating the local session with the YouTube Application Programming Interface (API), and using the tuber R-package to extract comments. Furthermore, we provide a function for parsing comments into a formatted dataframe that makes subsequent analysis of comments easier, requiring minimal datawrangling. Furthermore, we provide an interactive Jupyter Notebook examplifying the analysis of text and used emojis which is executable in the browser.
-
-The goal of this project is to publish a paper on methods and tools for the automatic collection and analysis of YouTube comments.
+This repository contains an R script as well as an interactive Jupyter notebook to demonstrate how to automatically collect, format, and explore YouTube comments, including the emojis they contain.
+The script and notebook showcase the following steps:
+1. Getting access to the YouTube API
+2. Extracting comments for a video
+3. Formatting the comments & extracting emojis
+4. Basic sentiment analysis for text & emojis
 
 If you use the materials from this repo for your own research, please cite it as:
 
