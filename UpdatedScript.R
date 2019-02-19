@@ -335,7 +335,7 @@ mapping10 <- geom_emoji(data = EmojiFreq[EmojiFreq$feature == "emoji_redheart",]
 # Sort by reverse frequency order
 EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -frequency))
 
-# Plot x most common Emojis using their graphical representation as points in the scatterplot
+# Plot 10 most common Emojis using their graphical representation as points in the scatterplot
 ggplot(EmojiFreq[1:10], aes(x = feature, y = frequency)) +
   geom_point() + 
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
@@ -466,7 +466,7 @@ AdditiveEmojiSentiment <- unlist(AdditiveEmojiSentiment)
 AES_df <- data.frame(AdditiveEmojiSentiment)
 ggplot(AES_df, aes(x = AES_df[,1])) +
   geom_histogram(binwidth = 1) +
-  labs(title = "Distribution of Summed Emoji Sentiment Scores by Comment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
+  labs(title = "Distribution of summed emoji sentiment scores by comment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   xlab("Emoji sentiment summed per comment")
 
 # show comments with negative emoji sum scores
