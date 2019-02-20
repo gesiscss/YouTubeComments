@@ -5,7 +5,6 @@ The script and notebook showcase the following steps:
 1. Getting access to the YouTube API
 2. Extracting comments for a video
 3. Formatting the comments & extracting emojis
-4. Basic frequwncy analysis for text & emojis
 4. Basic sentiment analysis for text & emojis
 
 If you use the materials from this repo for your own research, please cite it as:
