@@ -147,14 +147,26 @@ FormattedComments <- yt_parse(Comments) # will take a while if the number of com
 View(FormattedComments) # display dataframe to see if everything worked (you can close the View window/tab after inspecting the dataframe)
 
 # We can also create a plot to explore the development of the number of comments over time
-FormattedComments <- FormattedComments[order(FormattedComments$Published),] # sort comments by date
-CommentsCounter <- rep(1,dim(FormattedComments)[1]) # create comment counter variable
-CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8])) # create dataframe for plotting
+
+# sort comments by date
+FormattedComments <- FormattedComments[order(FormattedComments$Published),]
+
+# create comment counter variable
+CommentsCounter <- rep(1,dim(FormattedComments)[1])
+
+# create dataframe for plotting
+CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8]))
+
+# bin by week
 colnames(CounterFrame) <- c("CommentCounter","DateTime")
-CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week")) # bin by week
-PercTimes <- round(quantile(cumsum(CounterFrame$CommentCounter), probs = c(0.5, 0.75, 0.9, 0.99))) # compute percentiles
+CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week")) 
+
+# compute percentiles
+PercTimes <- round(quantile(cumsum(CounterFrame$CommentCounter), probs = c(0.5, 0.75, 0.9, 0.99)))
 CounterFrame$DateTime[PercTimes]
-ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) + # plot
+
+# plot
+ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) +
   stat_summary(fun.y=sum,geom="bar") +
   scale_x_date()  +
   labs(title = "Number of comments over time", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
@@ -203,6 +215,15 @@ TermFreq <- textstat_frequency(commentsDfm)
 head(TermFreq, n = 50) # you can pick a different value for n to choose the length of the most frequent words table
 # in the printed table, docfreq indicates in how many comments the word appears
 
+# After inspecting the most frequent terms, we might want to exclude certain terms that are not indicative for the comments (e.g. the word "video")
+CustomStops <- c("video","oh","d","now","get","go","xd", "youtube") # This is just an example, you can (and should) create your own list for each video
+
+# We can create another document-frequency matrix that excludes the custom stopwords that we just defined
+commentsDfm <- dfm(toks, remove = c(quanteda::stopwords("english"),CustomStops))
+
+# Updating Term frequency with removed custom stopwords
+TermFreq <- textstat_frequency(commentsDfm)
+
 #### Visualizing the overall frequency
 
 # Sort by reverse frequency order (i.e., from most to least frequent)
@@ -225,11 +246,6 @@ ggplot(head(TermFreq, n = 50), aes(x = feature, y = docfreq)) + # you can change
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Number of comments that each token is contained in", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
-# After inspecting the most frequent terms, we might want to exclude certain terms that are not indicative for the comments (e.g. the word "video")
-CustomStops <- c("video","oh","d","now","get","go","xd", "youtube") # This is just an example, you can (and should) create your own list for each video
-
-# We can create another document-frequency matrix that excludes the custom stopwords that we just defined
-commentsDfm <- dfm(toks, remove = c(quanteda::stopwords("english"),CustomStops))
 
 # We can create a Wordcloud with the most frequently used terms
 set.seed(12345) # We need to set a random seed first (can be any number). This is necessary if we want the wordcloud to be reproducible.
