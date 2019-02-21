@@ -104,10 +104,12 @@ Comments_sample <- get_comment_threads(c(video_id="DcJFdCmN98s"), max_results = 
 
 Comments <- get_all_comments(c(video_id="DcJFdCmN98s")) # to extract all comments (this might take a while if there are many comments)
 
-
 # Notice that your data set might contain fewer comments than are displayed as total comments on YouTube. This is because the
 # tuber package only scrapes up to five replies for each comment. If a comment has more than five replies, all subsequent replies
 # will not be extracted by the tuber package. This might be changed in the future, see: https://github.com/soodoku/tuber/issues/52
+
+# If you want to save some time, you can also just load the comment data for the example video if you downloaded the whole GitHub repo by uncommenting and running the following line
+# load("../data/UnparsedCommentsUTF8.RData")
 
 # Run the following line only if you only want to use comments that are not replies to other comments
 # you probably want to do this if you are only interested in the reactions to the video (and not those to other comments)
@@ -120,7 +122,6 @@ Comments <- subset(Comments, is.na(parentId))
 # To create a more detailed dataframe, we need to parse the data and extract relevant information.
 # We included a script containing the function for parsing comments in the GitHub repository. 
 # Make sure that you have this script (yt_parse.R) in the working directory.
-# for your Session with this script and then can load the function with the following command:
 
 source("yt_parse.R")
 

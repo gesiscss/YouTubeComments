@@ -18,7 +18,7 @@ To start the interactive notebook in your browser, just click the following butt
 
 # Examples
 
-![alt text](https://github.com/JuKo007/YoutubeComments/blob/master/Output/CommentsOvertime.png)
+![alt text](https://github.com/JuKo007/YouTubeComments/blob/master/Output/CommentsOvertime.png)
 
 ![alt text](https://github.com/JuKo007/YoutubeComments/blob/master/Output/MostFrequentWords.png)
 
