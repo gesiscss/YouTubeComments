@@ -596,7 +596,9 @@ cor(FullAverageSentimentPerWord,FullAverageEmojiSentiment,use="complete.obs")
 # plot the relationship
 TextEmojiRel <- data.frame(FullAverageSentimentPerWord,FullAverageEmojiSentiment)
 ggplot(TextEmojiRel, aes(x = FullAverageSentimentPerWord, y = FullAverageEmojiSentiment)) + geom_point(shape = 1) +
-  labs(title = "Averaged sentiment scores for text and emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
+  labs(title = "Averaged sentiment scores for text and emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
+  scale_x_continuous(limits = c(-5,5)) +
+  scale_y_continuous(limits = c(-1,1))
 
 # We do obtain a larger positive correlation with the averaged measures, however visual inspection reveals
 # that there is no meaningful linear relationships. The data are clustered around one vertical line and multiple
