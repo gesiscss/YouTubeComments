@@ -109,7 +109,7 @@ Comments <- get_all_comments(c(video_id="DcJFdCmN98s")) # to extract all comment
 # will not be extracted by the tuber package. This might be changed in the future, see: https://github.com/soodoku/tuber/issues/52
 
 # If you want to save some time, you can also just load the comment data for the example video if you downloaded the whole GitHub repo by uncommenting and running the following line
-# load("../data/UnparsedCommentsUTF8.RData")
+# load("../Data/UnparsedCommentsUTF8.RData")
 
 # Run the following line only if you only want to use comments that are not replies to other comments
 # you probably want to do this if you are only interested in the reactions to the video (and not those to other comments)
