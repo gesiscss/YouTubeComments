@@ -9,7 +9,7 @@ The script and notebook showcase the following steps:
 
 If you use the materials from this repo for your own research, please cite it as:
 
-Kohne, J., Breuer, J., & Mohseni, M. R. (2018). Automatic Sampling and Analysis of YouTube Comments. doi:10.17605/OSF.IO/HQSXE
+Kohne, J., Breuer, J., & Mohseni, M. R. (2018). Automatic Sampling and Analysis of YouTube Comments. [doi:10.17605/OSF.IO/HQSXE](https://osf.io/hqsxe/)
 
 To start the interactive notebook in your browser, just click the following button:
 
