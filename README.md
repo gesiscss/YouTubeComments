@@ -13,7 +13,7 @@ Kohne, J., Breuer, J., & Mohseni, M. R. (2018). Automatic Sampling and Analysis 
 
 To start the interactive notebook in your browser, just click the following button:
 
-[![Binder](https://notebooks.gesis.org/binder/badge.svg)](https://notebooks.gesis.org/binder/v2/gh/JuKo007/YouTubeComments/master)
+[![Binder](https://notebooks.gesis.org/binder/badge.svg)](https://notebooks.gesis.org/binder/v2/gh/JuKo007/YouTubeComments/master?filepath=Analyzing_YouTube_Comments_in_R.ipynb)
 
 
 # Examples
