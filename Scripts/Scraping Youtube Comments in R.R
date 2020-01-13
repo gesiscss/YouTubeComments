@@ -48,10 +48,10 @@ rm(packages, package) # remove the list-variable with the package names from the
 #### Installing & loading GitHub packages
 
 # Two packages that we need to work with Emojis are not on CRAN yet, so we install them from GitHub
-install_github("hadley/emo") 
+install_github("hadley/emo")
 library(emo)
 
-install_github("dill/emoGG") 
+install_github("dill/emoGG")
 library(emoGG)
 
 
@@ -77,8 +77,8 @@ library(emoGG)
 
 #### Authentification in R ####
 
-appID <- "12345abcde.apps.googleusercontent.com" # Insert your own app Id here 
-appSecret <- "4pp53Cr3T" # insert your own app Secret here 
+appID <- "12345abcde.apps.googleusercontent.com" # Insert your own app Id here
+appSecret <- "4pp53Cr3T" # insert your own app Secret here
 
 
 # When running this line, there will be a prompt in the console asking you to save the access token in a file
@@ -120,7 +120,7 @@ Comments <- subset(Comments, is.na(parentId))
 
 # The extracted data is still in a rather raw format.
 # To create a more detailed dataframe, we need to parse the data and extract relevant information.
-# We included a script containing the function for parsing comments in the GitHub repository. 
+# We included a script containing the function for parsing comments in the GitHub repository.
 # Make sure that you have this script (yt_parse.R) in the working directory.
 
 source("yt_parse.R")
@@ -136,7 +136,7 @@ source("yt_parse.R")
 #       5) A column including only the emojis that have been used in the comments (e.g. EMOJI_grinningface)
 #       6) Amount of likes that the comment has received
 #       7) List of URLs that are contained in the comment
-#       8) Timestamp when comment was published 
+#       8) Timestamp when comment was published
 #       9) Timestamp when comment was last edited
 #       10) YouTube moderation status flags (e.g. "likely spam")
 #       11) Unique comment ID
@@ -160,22 +160,22 @@ CounterFrame <- data.frame(CommentsCounter,unlist(FormattedComments[,8]))
 
 # bin by week
 colnames(CounterFrame) <- c("CommentCounter","DateTime")
-CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week")) 
+CounterFrame$DateTime <- as.Date(cut(CounterFrame$DateTime, breaks = "week"))
 
 # compute percentiles
 PercTimes <- round(quantile(cumsum(CounterFrame$CommentCounter), probs = c(0.5, 0.75, 0.9, 0.99)))
 CounterFrame$DateTime[PercTimes]
 
 # plot
-ggplot(CounterFrame,aes(x=DateTime,y=CommentCounter)) +
-  stat_summary(fun.y=sum,geom="bar") +
+ggplot(CounterFrame,aes(x = DateTime,y = CommentCounter)) +
+  stat_summary(fun.y = sum,geom="bar") +
   scale_x_date()  +
   labs(title = "Number of comments over time", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   geom_vline(xintercept = CounterFrame$DateTime[PercTimes],linetype = "dashed", colour = "red") +
-  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][1]) , label = "50%", y = 3500), colour="red", angle=90, vjust = 1.2) +
-  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][2]) , label = "75%", y = 3500), colour="red", angle=90, vjust = 1.2) +
-  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][3]) , label = "90%", y = 3500), colour="red", angle=90, vjust = 1.2) +
-  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][4]) , label = "99%", y = 3500), colour="red", angle=90, vjust = 1.2)
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][1]) , label = "50%", y = 3500), colour = "red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][2]) , label = "75%", y = 3500), colour = "red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][3]) , label = "90%", y = 3500), colour = "red", angle=90, vjust = 1.2) +
+  geom_text(aes(x = as.Date(CounterFrame$DateTime[PercTimes][4]) , label = "99%", y = 3500), colour = "red", angle=90, vjust = 1.2)
 
 #### Basic frequency analysis for text ####
 
@@ -232,7 +232,7 @@ TermFreq$feature <- with(TermFreq, reorder(feature, -frequency))
 
 # Plot frequency of 50 most common words
 ggplot(head(TermFreq, n = 50), aes(x = feature, y = frequency)) + # you can change n to choose how many words are plotted
-  geom_point() + 
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Most frequent words in comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
@@ -242,8 +242,8 @@ ggplot(head(TermFreq, n = 50), aes(x = feature, y = frequency)) + # you can chan
 TermFreq$feature <- with(TermFreq, reorder(feature, -docfreq))
 
 # plot terms that appear in the highest number of comments
-ggplot(head(TermFreq, n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many words are plotted 
-  geom_point() + 
+ggplot(head(TermFreq, n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many words are plotted
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Number of comments that each token is contained in", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
@@ -259,7 +259,7 @@ textplot_wordcloud(dfm_select(commentsDfm, min_nchar=1),
 # We want to compute sentiment scores per comment. This is done by matching the text strings with a dictionary of word sentiments.
 # Depending on the type of video you want to analyze, a different sentiment dictionary might be suitable.
 # For this example, we decided to use the AFINN dictionary (http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010)
-# For more options, check: https://www.rdocumentation.org/packages/syuzhet/versions/1.0.4/topics/get_sentiment 
+# For more options, check: https://www.rdocumentation.org/packages/syuzhet/versions/1.0.4/topics/get_sentiment
 CommentSentiment <- get_sentiment(FormattedComments$TextEmojiDeleted, method = "afinn")
 
 # summary statistics for sentiment scores per comment
@@ -332,8 +332,8 @@ head(EmojiFreq, n = 10) # you can pick a different value for n to choose the len
 EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -frequency))
 
 # plot
-ggplot(head(EmojiFreq, n = 50), aes(x = feature, y = frequency)) + # you can change n to choose how many Emojis are plotted 
-  geom_point() + 
+ggplot(head(EmojiFreq, n = 50), aes(x = feature, y = frequency)) + # you can change n to choose how many Emojis are plotted
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Most frequent emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
@@ -354,7 +354,7 @@ EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -frequency))
 
 # Plot 10 most common Emojis using their graphical representation as points in the scatterplot
 ggplot(EmojiFreq[1:10], aes(x = feature, y = frequency)) +
-  geom_point() + 
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "10 most frequent emojis", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   mapping1 +
@@ -375,8 +375,8 @@ ggplot(EmojiFreq[1:10], aes(x = feature, y = frequency)) +
 EmojiFreq$feature <- with(EmojiFreq, reorder(feature, -docfreq))
 
 # plot
-ggplot(head(EmojiFreq,n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many Emojis are plotted 
-  geom_point() + 
+ggplot(head(EmojiFreq,n = 50), aes(x = feature, y = docfreq)) + # you can change n to choose how many Emojis are plotted
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Emojis contained in most comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s")
 
@@ -397,7 +397,7 @@ mapping10 <- geom_emoji(data = NewOrder[NewOrder$feature == "emoji_smilingfacewi
 
 # Plot 10 Emojis that most comments mention at least once
 ggplot(NewOrder[1:10], aes(x = feature, y = docfreq)) +
-  geom_point() + 
+  geom_point() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "Top 10 emojis contained in most comments", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
   mapping1 +
@@ -423,7 +423,7 @@ ggplot(NewOrder[1:10], aes(x = feature, y = docfreq)) +
 EmojiSentiments <- emojis_sentiment
 ?emojis_sentiment # view a short description of this dictionary from the documentation for the lexicon package
 
-# Unfortunately, the dictionary only contains 734 different Emojis. 
+# Unfortunately, the dictionary only contains 734 different Emojis.
 # Those were the most frequently used ones when the study on which the dictionars is based was conducted.
 # You can view the emoji sentiment scores online here: http://kt.ijs.si/data/Emoji_sentiment_ranking/index.html
 
@@ -468,10 +468,10 @@ AllEmojiSentiments <- as.list(AllEmojiSentiments)
 # define custom function to add up sentiment scores of emojis per comment (you have to highlight the whole function and run it as a whole)
 
 AddEmojiSentiments <- function(x){
-  
+
   x <- sum(as.numeric(as.character(x)))
   return(x)
-  
+
 }
 
 # Apply the function to every comment that contains emojis (only those emojis that have a sentiment score will be used)
@@ -563,10 +563,10 @@ df$Comment[AverageSentimentPerWord == max(AverageSentimentPerWord)]
 # define custom function to add up sentiment scores of emojis per comment (you have to highlight the whole function and run it as a whole)
 
 AverageEmojiSentiments <- function(x){
-  
+
   x <- mean(as.numeric(unlist(x)))
   return(x)
-  
+
 }
 
 # Apply the function to every comment that contains emojis (only those emojis that have a sentiment score will be used)
@@ -586,7 +586,7 @@ AvES_df <- data.frame(AverageEmojiSentiment)
 ggplot(AvES_df, aes(x = AvES_df[,1])) +
   geom_histogram(binwidth = 0.2) +
   labs(title = "Distribution of averaged emoji sentiment scores by comment", subtitle = "Schmoyoho - OH MY DAYUM ft. Daym Drops \nhttps://www.youtube.com/watch?v=DcJFdCmN98s") +
-  xlab("Emoji sentiment averaged per comment") 
+  xlab("Emoji sentiment averaged per comment")
 
 ## Correlation
 
