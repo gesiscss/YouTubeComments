@@ -10,8 +10,7 @@ for (package in packages) { # check if those packages are already installed
   }
   else {library(package, character.only=T)} # if they are already installed, only load them
 }
-rm(packages, package) 
-
+rm(packages, package)
 
 # GitHub packages (this may take a while)
 install_github("hadley/emo") # install from GitHub
